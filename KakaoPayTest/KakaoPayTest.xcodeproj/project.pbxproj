@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		74FDD29B237116DF00D706BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDD29A237116DF00D706BC /* AppDelegate.swift */; };
+		74FDD29D237116DF00D706BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDD29C237116DF00D706BC /* SceneDelegate.swift */; };
+		74FDD29F237116DF00D706BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDD29E237116DF00D706BC /* ViewController.swift */; };
+		74FDD2A2237116DF00D706BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FDD2A0237116DF00D706BC /* Main.storyboard */; };
+		74FDD2A4237116E000D706BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74FDD2A3237116E000D706BC /* Assets.xcassets */; };
+		74FDD2A7237116E000D706BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FDD2A5237116E000D706BC /* LaunchScreen.storyboard */; };
+		74FDD2B2237116E000D706BC /* KakaoPayTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDD2B1237116E000D706BC /* KakaoPayTestTests.swift */; };
+		74FDD2BD237116E000D706BC /* KakaoPayTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FDD2BC237116E000D706BC /* KakaoPayTestUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74FDD2AE237116E000D706BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74FDD28F237116DF00D706BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74FDD296237116DF00D706BC;
+			remoteInfo = KakaoPayTest;
+		};
+		74FDD2B9237116E000D706BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74FDD28F237116DF00D706BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74FDD296237116DF00D706BC;
+			remoteInfo = KakaoPayTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		74FDD297237116DF00D706BC /* KakaoPayTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoPayTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74FDD29A237116DF00D706BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		74FDD29C237116DF00D706BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		74FDD29E237116DF00D706BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74FDD2A1237116DF00D706BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		74FDD2A3237116E000D706BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		74FDD2A6237116E000D706BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		74FDD2A8237116E000D706BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74FDD2AD237116E000D706BC /* KakaoPayTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KakaoPayTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74FDD2B1237116E000D706BC /* KakaoPayTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPayTestTests.swift; sourceTree = "<group>"; };
+		74FDD2B3237116E000D706BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74FDD2B8237116E000D706BC /* KakaoPayTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KakaoPayTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74FDD2BC237116E000D706BC /* KakaoPayTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPayTestUITests.swift; sourceTree = "<group>"; };
+		74FDD2BE237116E000D706BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74FDD294237116DF00D706BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FDD2AA237116E000D706BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FDD2B5237116E000D706BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		74FDD28E237116DF00D706BC = {
+			isa = PBXGroup;
+			children = (
+				74FDD299237116DF00D706BC /* KakaoPayTest */,
+				74FDD2B0237116E000D706BC /* KakaoPayTestTests */,
+				74FDD2BB237116E000D706BC /* KakaoPayTestUITests */,
+				74FDD298237116DF00D706BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		74FDD298237116DF00D706BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74FDD297237116DF00D706BC /* KakaoPayTest.app */,
+				74FDD2AD237116E000D706BC /* KakaoPayTestTests.xctest */,
+				74FDD2B8237116E000D706BC /* KakaoPayTestUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74FDD299237116DF00D706BC /* KakaoPayTest */ = {
+			isa = PBXGroup;
+			children = (
+				74FDD29A237116DF00D706BC /* AppDelegate.swift */,
+				74FDD29C237116DF00D706BC /* SceneDelegate.swift */,
+				74FDD29E237116DF00D706BC /* ViewController.swift */,
+				74FDD2A0237116DF00D706BC /* Main.storyboard */,
+				74FDD2A3237116E000D706BC /* Assets.xcassets */,
+				74FDD2A5237116E000D706BC /* LaunchScreen.storyboard */,
+				74FDD2A8237116E000D706BC /* Info.plist */,
+			);
+			path = KakaoPayTest;
+			sourceTree = "<group>";
+		};
+		74FDD2B0237116E000D706BC /* KakaoPayTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				74FDD2B1237116E000D706BC /* KakaoPayTestTests.swift */,
+				74FDD2B3237116E000D706BC /* Info.plist */,
+			);
+			path = KakaoPayTestTests;
+			sourceTree = "<group>";
+		};
+		74FDD2BB237116E000D706BC /* KakaoPayTestUITests */ = {
+			isa = PBXGroup;
+			children = (
+				74FDD2BC237116E000D706BC /* KakaoPayTestUITests.swift */,
+				74FDD2BE237116E000D706BC /* Info.plist */,
+			);
+			path = KakaoPayTestUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74FDD296237116DF00D706BC /* KakaoPayTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74FDD2C1237116E000D706BC /* Build configuration list for PBXNativeTarget "KakaoPayTest" */;
+			buildPhases = (
+				74FDD293237116DF00D706BC /* Sources */,
+				74FDD294237116DF00D706BC /* Frameworks */,
+				74FDD295237116DF00D706BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KakaoPayTest;
+			productName = KakaoPayTest;
+			productReference = 74FDD297237116DF00D706BC /* KakaoPayTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74FDD2AC237116E000D706BC /* KakaoPayTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74FDD2C4237116E000D706BC /* Build configuration list for PBXNativeTarget "KakaoPayTestTests" */;
+			buildPhases = (
+				74FDD2A9237116E000D706BC /* Sources */,
+				74FDD2AA237116E000D706BC /* Frameworks */,
+				74FDD2AB237116E000D706BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74FDD2AF237116E000D706BC /* PBXTargetDependency */,
+			);
+			name = KakaoPayTestTests;
+			productName = KakaoPayTestTests;
+			productReference = 74FDD2AD237116E000D706BC /* KakaoPayTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		74FDD2B7237116E000D706BC /* KakaoPayTestUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74FDD2C7237116E000D706BC /* Build configuration list for PBXNativeTarget "KakaoPayTestUITests" */;
+			buildPhases = (
+				74FDD2B4237116E000D706BC /* Sources */,
+				74FDD2B5237116E000D706BC /* Frameworks */,
+				74FDD2B6237116E000D706BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74FDD2BA237116E000D706BC /* PBXTargetDependency */,
+			);
+			name = KakaoPayTestUITests;
+			productName = KakaoPayTestUITests;
+			productReference = 74FDD2B8237116E000D706BC /* KakaoPayTestUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74FDD28F237116DF00D706BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "박진수";
+				TargetAttributes = {
+					74FDD296237116DF00D706BC = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					74FDD2AC237116E000D706BC = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 74FDD296237116DF00D706BC;
+					};
+					74FDD2B7237116E000D706BC = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 74FDD296237116DF00D706BC;
+					};
+				};
+			};
+			buildConfigurationList = 74FDD292237116DF00D706BC /* Build configuration list for PBXProject "KakaoPayTest" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 74FDD28E237116DF00D706BC;
+			productRefGroup = 74FDD298237116DF00D706BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74FDD296237116DF00D706BC /* KakaoPayTest */,
+				74FDD2AC237116E000D706BC /* KakaoPayTestTests */,
+				74FDD2B7237116E000D706BC /* KakaoPayTestUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74FDD295237116DF00D706BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74FDD2A7237116E000D706BC /* LaunchScreen.storyboard in Resources */,
+				74FDD2A4237116E000D706BC /* Assets.xcassets in Resources */,
+				74FDD2A2237116DF00D706BC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FDD2AB237116E000D706BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FDD2B6237116E000D706BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74FDD293237116DF00D706BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74FDD29F237116DF00D706BC /* ViewController.swift in Sources */,
+				74FDD29B237116DF00D706BC /* AppDelegate.swift in Sources */,
+				74FDD29D237116DF00D706BC /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FDD2A9237116E000D706BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74FDD2B2237116E000D706BC /* KakaoPayTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74FDD2B4237116E000D706BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74FDD2BD237116E000D706BC /* KakaoPayTestUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74FDD2AF237116E000D706BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74FDD296237116DF00D706BC /* KakaoPayTest */;
+			targetProxy = 74FDD2AE237116E000D706BC /* PBXContainerItemProxy */;
+		};
+		74FDD2BA237116E000D706BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74FDD296237116DF00D706BC /* KakaoPayTest */;
+			targetProxy = 74FDD2B9237116E000D706BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		74FDD2A0237116DF00D706BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74FDD2A1237116DF00D706BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		74FDD2A5237116E000D706BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74FDD2A6237116E000D706BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		74FDD2BF237116E000D706BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		74FDD2C0237116E000D706BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74FDD2C2237116E000D706BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSKSVJPZJD;
+				INFOPLIST_FILE = KakaoPayTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinsu.KakaoPayTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		74FDD2C3237116E000D706BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSKSVJPZJD;
+				INFOPLIST_FILE = KakaoPayTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinsu.KakaoPayTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		74FDD2C5237116E000D706BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSKSVJPZJD;
+				INFOPLIST_FILE = KakaoPayTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinsu.KakaoPayTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KakaoPayTest.app/KakaoPayTest";
+			};
+			name = Debug;
+		};
+		74FDD2C6237116E000D706BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSKSVJPZJD;
+				INFOPLIST_FILE = KakaoPayTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinsu.KakaoPayTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KakaoPayTest.app/KakaoPayTest";
+			};
+			name = Release;
+		};
+		74FDD2C8237116E000D706BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSKSVJPZJD;
+				INFOPLIST_FILE = KakaoPayTestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinsu.KakaoPayTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KakaoPayTest;
+			};
+			name = Debug;
+		};
+		74FDD2C9237116E000D706BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HSKSVJPZJD;
+				INFOPLIST_FILE = KakaoPayTestUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinsu.KakaoPayTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KakaoPayTest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74FDD292237116DF00D706BC /* Build configuration list for PBXProject "KakaoPayTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74FDD2BF237116E000D706BC /* Debug */,
+				74FDD2C0237116E000D706BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74FDD2C1237116E000D706BC /* Build configuration list for PBXNativeTarget "KakaoPayTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74FDD2C2237116E000D706BC /* Debug */,
+				74FDD2C3237116E000D706BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74FDD2C4237116E000D706BC /* Build configuration list for PBXNativeTarget "KakaoPayTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74FDD2C5237116E000D706BC /* Debug */,
+				74FDD2C6237116E000D706BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74FDD2C7237116E000D706BC /* Build configuration list for PBXNativeTarget "KakaoPayTestUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74FDD2C8237116E000D706BC /* Debug */,
+				74FDD2C9237116E000D706BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74FDD28F237116DF00D706BC /* Project object */;
+}
