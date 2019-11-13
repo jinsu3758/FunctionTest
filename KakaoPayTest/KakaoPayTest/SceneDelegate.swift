@@ -1,13 +1,13 @@
 //
 //  SceneDelegate.swift
-//  KakaoPayTest
+//  ewrew
 //
-//  Created by 박진수 on 05/11/2019.
+//  Created by 박진수 on 13/11/2019.
 //  Copyright © 2019 박진수. All rights reserved.
 //
 
 import UIKit
-
+@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

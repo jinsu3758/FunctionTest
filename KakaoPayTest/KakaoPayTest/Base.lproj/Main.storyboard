@@ -1,24 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVC" id="BYZ-38-t0r" customClass="MainViewController" customModule="KakaoPayTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rx1-8M-bXl">
+                                <rect key="frame" x="181" y="433" width="52" height="30"/>
+                                <state key="normal" title="결제하기"/>
+                                <connections>
+                                    <action selector="onPay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cgb-Ab-9o4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Rx1-8M-bXl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Nou-wz-5kk"/>
+                            <constraint firstItem="Rx1-8M-bXl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sHd-d9-Woh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="dtA-Rq-R07" kind="show" identifier="webSegue" id="YCa-Kc-gjW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="138"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="BOx-LW-1q1">
+            <objects>
+                <viewController storyboardIdentifier="webVC" modalPresentationStyle="fullScreen" id="dtA-Rq-R07" customClass="WebViewController" customModule="KakaoPayTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0J7-gZ-HAf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ve-2h-Og9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0wL-0i-Ww4" firstAttribute="trailing" secondItem="1ve-2h-Og9" secondAttribute="trailing" id="4en-8p-J2o"/>
+                            <constraint firstItem="1ve-2h-Og9" firstAttribute="leading" secondItem="0wL-0i-Ww4" secondAttribute="leading" id="FrX-wc-0kT"/>
+                            <constraint firstAttribute="bottom" secondItem="1ve-2h-Og9" secondAttribute="bottom" id="itn-uA-cVN"/>
+                            <constraint firstItem="1ve-2h-Og9" firstAttribute="top" secondItem="0J7-gZ-HAf" secondAttribute="top" id="ufr-zF-0mS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0wL-0i-Ww4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cuS-Od-puS"/>
+                    <connections>
+                        <outlet property="webView" destination="1ve-2h-Og9" id="nA9-N8-Dhe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8me-PY-vcc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984" y="124"/>
         </scene>
     </scenes>
 </document>
