@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,11 +55,17 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="iqE-E6-psJ">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0wL-0i-Ww4" firstAttribute="trailing" secondItem="1ve-2h-Og9" secondAttribute="trailing" id="4en-8p-J2o"/>
                             <constraint firstItem="1ve-2h-Og9" firstAttribute="leading" secondItem="0wL-0i-Ww4" secondAttribute="leading" id="FrX-wc-0kT"/>
+                            <constraint firstItem="iqE-E6-psJ" firstAttribute="centerX" secondItem="0J7-gZ-HAf" secondAttribute="centerX" id="Vjp-bd-W5a"/>
+                            <constraint firstItem="iqE-E6-psJ" firstAttribute="centerY" secondItem="0J7-gZ-HAf" secondAttribute="centerY" id="aZr-SC-oGy"/>
                             <constraint firstAttribute="bottom" secondItem="1ve-2h-Og9" secondAttribute="bottom" id="itn-uA-cVN"/>
                             <constraint firstItem="1ve-2h-Og9" firstAttribute="top" secondItem="0J7-gZ-HAf" secondAttribute="top" id="ufr-zF-0mS"/>
                         </constraints>
@@ -66,6 +73,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="cuS-Od-puS"/>
                     <connections>
+                        <outlet property="indicator" destination="iqE-E6-psJ" id="P2N-me-oT5"/>
                         <outlet property="webView" destination="1ve-2h-Og9" id="nA9-N8-Dhe"/>
                     </connections>
                 </viewController>

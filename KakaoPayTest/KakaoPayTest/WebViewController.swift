@@ -9,8 +9,16 @@
 import UIKit
 import WebKit
 
+enum RedirectURL: String {
+    case success = "http://localhost:8080/kakaoPaySuccess"
+    case cancel = "http://localhost:8080/kakaoPayCancel"
+    case fail = "http://localhost:8080/kakaoPayFail"
+    
+}
+
 class WebViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var payInfo: PayInfo?
     
@@ -33,6 +41,19 @@ class WebViewController: UIViewController {
 
 extension WebViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url?.absoluteString, let result = RedirectURL(rawValue: url) {
+            switch result {
+            case .success:
+                indicator.startAnimating()
+            case .cancel:
+                break
+            case .fail:
+                break
+            }
+        }
+        decisionHandler(.allow)
     }
 }

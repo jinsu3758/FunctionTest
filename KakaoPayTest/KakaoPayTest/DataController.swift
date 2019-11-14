@@ -10,12 +10,12 @@ import UIKit
 
 class DataController: NSObject {
     let api = ApiUtil()
+    let header: [String:String] = ["Content-Type": "application/x-www-form-urlencoded", "Authorization":"KakaoAK abc6c5b515b81585963b1c7809712d52"]
     
     func requestPay(completion: @escaping (PayInfo?) -> Void) {
-        let header: [String:String] = ["Content-Type": "application/x-www-form-urlencoded", "Authorization":"KakaoAK abc6c5b515b81585963b1c7809712d52"]
         api.path = "/v1/payment/ready"
         
-        let body: [URLQueryItem] = [URLQueryItem(name: "cid", value: "TC0ONETIME"), URLQueryItem(name: "partner_order_id", value: "partner_order_id"), URLQueryItem(name: "partner_user_id", value: "partner_user_id"), URLQueryItem(name: "item_name", value: "초코파이"), URLQueryItem(name: "quantity", value: "1"), URLQueryItem(name: "total_amount", value: "2200"), URLQueryItem(name: "vat_amount", value: "200"), URLQueryItem(name: "tax_free_amount", value: "0"), URLQueryItem(name: "approval_url", value: "http://localhost:8080/kakaoPaySuccess"), URLQueryItem(name: "cancel_url", value: "http://localhost:8080/kakaoPayCancel"), URLQueryItem(name: "fail_url", value: "http://localhost:8080/kakaoPaySuccessFail")]
+        let body: [URLQueryItem] = [URLQueryItem(name: "cid", value: "TC0ONETIME"), URLQueryItem(name: "partner_order_id", value: "partner_order_id"), URLQueryItem(name: "partner_user_id", value: "partner_user_id"), URLQueryItem(name: "item_name", value: "초코파이"), URLQueryItem(name: "quantity", value: "1"), URLQueryItem(name: "total_amount", value: "2200"), URLQueryItem(name: "vat_amount", value: "200"), URLQueryItem(name: "tax_free_amount", value: "0"), URLQueryItem(name: "approval_url", value: "http://localhost:8080/kakaoPaySuccess"), URLQueryItem(name: "cancel_url", value: "http://localhost:8080/kakaoPayCancel"), URLQueryItem(name: "fail_url", value: "http://localhost:8080/kakaoPayFail")]
         api.request(with: body, method: .post, header: header, completion: { data, error in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
@@ -47,6 +47,11 @@ class DataController: NSObject {
             
         })
         
+    }
+    
+    func requestPayApprove(payId: String, token: String, completion: () -> Void) {
+        api.path = "v1/payment/approve"
+        let body: [URLQueryItem] = [URLQueryItem(name: "cid", value: "TC0ONETIME"), URLQueryItem(name: "tid", value: payId), URLQueryItem(name: "partner_order_id", value: "partner_order_id"), URLQueryItem(name: "partner_user_id", value: "partner_user_id"), URLQueryItem(name: "pg_token", value: token)]
     }
     
     
