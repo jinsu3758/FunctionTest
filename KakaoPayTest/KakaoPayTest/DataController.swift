@@ -9,8 +9,8 @@
 import UIKit
 
 class DataController: NSObject {
-    let api = ApiUtil()
-    let header: [String:String] = ["Content-Type": "application/x-www-form-urlencoded", "Authorization":"KakaoAK abc6c5b515b81585963b1c7809712d52"]
+    private let api = ApiUtil()
+    private let header: [String:String] = ["Content-Type": "application/x-www-form-urlencoded", "Authorization":"KakaoAK abc6c5b515b81585963b1c7809712d52"]
     
     func requestPay(completion: @escaping (PayInfo?) -> Void) {
         api.path = "/v1/payment/ready"
@@ -49,9 +49,33 @@ class DataController: NSObject {
         
     }
     
-    func requestPayApprove(payId: String, token: String, completion: () -> Void) {
+    func requestPayApprove(payId: String, token: String, completion: @escaping (String?, Error?) -> Void) {
         api.path = "v1/payment/approve"
         let body: [URLQueryItem] = [URLQueryItem(name: "cid", value: "TC0ONETIME"), URLQueryItem(name: "tid", value: payId), URLQueryItem(name: "partner_order_id", value: "partner_order_id"), URLQueryItem(name: "partner_user_id", value: "partner_user_id"), URLQueryItem(name: "pg_token", value: token)]
+        
+        api.request(with: body, method: .post, header: header, completion: { data, error in
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(nil, nil)
+                }
+                return
+            }
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] else {
+                    DispatchQueue.main.async {
+                        completion("ee", nil)
+                    }
+                    return
+                }
+            }
+            catch {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+            }
+            
+        })
+        
     }
     
     

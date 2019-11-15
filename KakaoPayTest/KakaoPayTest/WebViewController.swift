@@ -9,10 +9,27 @@
 import UIKit
 import WebKit
 
-enum RedirectURL: String {
-    case success = "http://localhost:8080/kakaoPaySuccess"
-    case cancel = "http://localhost:8080/kakaoPayCancel"
-    case fail = "http://localhost:8080/kakaoPayFail"
+protocol KaKaoPayDelegate {
+    func successPay()
+}
+
+enum RedirectURL {
+    case success
+    case cancel
+    case fail
+    
+    init(url: String) {
+        if url.contains("Success") {
+            self = .success
+        }
+        else if url.contains("Cancel") {
+            self = .cancel
+        }
+        else {
+            self = .fail
+        }
+    
+    }
     
 }
 
@@ -21,6 +38,8 @@ class WebViewController: UIViewController {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var payInfo: PayInfo?
+    var payDelegate: KaKaoPayDelegate?
+    private let dataController = DataController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +60,34 @@ class WebViewController: UIViewController {
 
 extension WebViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        print("리다이렉트!!")
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url?.absoluteString, let result = RedirectURL(rawValue: url) {
-            switch result {
-            case .success:
-                indicator.startAnimating()
-            case .cancel:
-                break
-            case .fail:
-                break
-            }
+        guard let urlString = navigationAction.request.url?.absoluteString, let urlComponents = URLComponents(string: urlString), urlString.contains("localhost") else {
+            decisionHandler(.allow)
+            return
+        }
+        let result = RedirectURL(url: urlString)
+        switch result {
+        case .success:
+            guard let token = urlComponents.queryItems?.first?.value else { break }
+            indicator.startAnimating()
+            dataController.requestPayApprove(payId: payInfo?.payId ?? "", token: token, completion: { [unowned self] data, error in
+                if data == nil, error != nil {
+                    let alert = UIAlertController(title: "실패 \(error.debugDescription)", message: nil, preferredStyle: .alert)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                print("성공!")
+                self.indicator.stopAnimating()
+                self.payDelegate?.successPay()
+                self.dismiss(animated: true, completion: nil)
+
+            })
+        case .cancel:
+            print("취소!")
+        case .fail:
+            print("실패!")
         }
         decisionHandler(.allow)
     }

@@ -21,10 +21,19 @@ class MainViewController: UIViewController {
         dataController.requestPay { [unowned self] payinfo in
             if let webVC = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as? WebViewController {
                 webVC.payInfo = payinfo
+                webVC.payDelegate = self
                 self.present(webVC, animated: true, completion: nil)
             }
         }
     }
+    
+}
+
+extension MainViewController: KaKaoPayDelegate {
+    func successPay() {
+        print("성공2!!")
+    }
+    
     
 }
 
