@@ -15,7 +15,13 @@ enum HTTPMethod: String {
     case put = "PUT"
 }
 
-public typealias ApiResult = (_ data: Data?, _ error: Error?) -> Void
+enum ApiError: Error {
+    case urlError
+    case requestError
+    case decoderError
+    case clientError
+    case serverError
+}
 
 public enum ApiResponse {
     case success(statusCode: Int)
@@ -44,9 +50,9 @@ class ApiUtil: NSObject {
     private var dataTask: URLSessionTask?
     private let urlSession = URLSession.shared
     
-    func request(with queryItems: [URLQueryItem], method: HTTPMethod, header: [String : String]? = nil, completion: @escaping ApiResult) {
+    func request<T: Decodable>(for: T.Type = T.self, with queryItems: [URLQueryItem], method: HTTPMethod, header: [String : String]? = nil, completion: @escaping (Result<T, Error>) -> Void) {
         guard var urlComponents = URLComponents(string: baseURL + path) else {
-            completion(nil, nil)
+            completion(.failure(ApiError.urlError))
             return
         }
         
@@ -55,7 +61,7 @@ class ApiUtil: NSObject {
         }
         
         guard let url = urlComponents.url else {
-            completion(nil, nil)
+            completion(.failure(ApiError.urlError))
             return
         }
         
@@ -67,8 +73,8 @@ class ApiUtil: NSObject {
         }
         
         request.httpMethod = method.rawValue
-//        request.timeoutInterval = timeout
-//        request.cachePolicy = .reloadIgnoringCacheData
+        request.timeoutInterval = timeout
+        request.cachePolicy = .reloadIgnoringCacheData
         
         if method == .post || method == .put {
             var query = URLComponents()
@@ -83,17 +89,35 @@ class ApiUtil: NSObject {
         }
         
         dataTask = urlSession.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                completion(nil ,error)
+            guard let data = data, error == nil else {
+                completion(.failure(ApiError.requestError))
                 return
             }
             
             let result = ApiResponse(response)
             switch result {
             case .success:
-                completion(data, nil)
-            case .clientError, .serverError:
-                completion(nil, error)
+                do {
+                    let item = try JSONDecoder().decode(T.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(.success(item))
+                    }
+                    
+                }
+                catch {
+                    DispatchQueue.main.async {
+                        completion(.failure(ApiError.decoderError))
+                    }
+                }
+                
+            case .clientError:
+                DispatchQueue.main.async {
+                    completion(.failure(ApiError.clientError))
+                }
+            case .serverError:
+                DispatchQueue.main.async {
+                    completion(.failure(ApiError.serverError))
+                }
             }
         }
         dataTask?.resume()

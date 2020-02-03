@@ -73,9 +73,9 @@ extension WebViewController: WKUIDelegate, WKNavigationDelegate {
         case .success:
             guard let token = urlComponents.queryItems?.first?.value else { break }
             indicator.startAnimating()
-            dataController.requestPayApprove(payId: payInfo?.payId ?? "", token: token, completion: { [unowned self] data, error in
-                if data == nil, error != nil {
-                    let alert = UIAlertController(title: "실패 \(error.debugDescription)", message: nil, preferredStyle: .alert)
+            dataController.requestPayApprove(payId: payInfo?.payId ?? "", token: token, completion: { [unowned self] data in
+                if data == nil {
+                    let alert = UIAlertController(title: "실패", message: nil, preferredStyle: .alert)
                     self.present(alert, animated: true, completion: nil)
                 }
                 print("성공!")

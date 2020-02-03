@@ -1,0 +1,6 @@
+framework module Pods_CandleChartTest_CandleChartTestUITests {
+  umbrella header "Pods-CandleChartTest-CandleChartTestUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
