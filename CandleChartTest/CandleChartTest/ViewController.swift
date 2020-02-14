@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftCharts
+//import SwiftCharts
 
 class ViewController: UIViewController {
     
@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
+//        let labelSettings = ChartLabelSettings(font: UIFont(name: "Helvetica", size: 0) ?? UIFont.systemFont(ofSize: 0))
         
         var readFormatter = DateFormatter()
         readFormatter.dateFormat = "dd.MM.yyyy"
@@ -64,7 +65,9 @@ class ViewController: UIViewController {
             ChartPointCandleStick(date: date("26.10.2015"), formatter: displayFormatter, high: 31.5, low: 29.2, open: 29.6, close: 29.6),
             ChartPointCandleStick(date: date("27.10.2015"), formatter: displayFormatter, high: 30, low: 27, open: 29, close: 28.5),
             ChartPointCandleStick(date: date("28.10.2015"), formatter: displayFormatter, high: 32, low: 30, open: 31, close: 30.6),
-            ChartPointCandleStick(date: date("29.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33)
+            ChartPointCandleStick(date: date("29.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
+            ChartPointCandleStick(date: date("30.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
+            ChartPointCandleStick(date: date("31.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
         ]
         
         func filler(_ date: Date) -> ChartAxisValueDate {
@@ -74,32 +77,37 @@ class ViewController: UIViewController {
         }
         
         // 20에서 55까지 5의 보폭으로
-        let yValues = stride(from: 20, through: 55, by: 5).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)}
-        let xGeneratorDate = ChartAxisValuesGeneratorDate(unit: .day, preferredDividers: 2, minSpace: 1, maxTextSize: 12)
+        let yValues = stride(from: 20, through: 55, by: 5).map { ChartAxisValueDouble(Double($0), labelSettings: labelSettings) }   // y축 label value 생성, generator가 아니 value array로 생성
+        let xGeneratorDate = ChartAxisValuesGeneratorDate(unit: .day, preferredDividers: 2, minSpace: 1, maxTextSize: 12)   // 2칸으로 나누는 듯
         let xLabelGeneratorDate = ChartAxisLabelsGeneratorDate(labelSettings: labelSettings, formatter: displayFormatter)
         let firstDate = date("01.10.2015")
         let lastDate = date("31.10.2015")
-        let xModel = ChartAxisModel(firstModelValue: firstDate.timeIntervalSince1970, lastModelValue: lastDate.timeIntervalSince1970, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings), axisValuesGenerator: xGeneratorDate, labelsGenerator: xLabelGeneratorDate)
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
-        let chartFrame = ExamplesDefaults.chartFrame(view.bounds)
-        let chartSettings = ExamplesDefaults.chartSettings
+        print("\(firstDate.timeIntervalSince1970)!!")
+        // firstDate부터 lastDate까지 xGenerator과 xLabelGenerator로 x축 모델을 만듬
+        let xModel = ChartAxisModel(firstModelValue: firstDate.timeIntervalSince1970, lastModelValue: lastDate.timeIntervalSince1970,  axisValuesGenerator: xGeneratorDate, labelsGenerator: xLabelGeneratorDate)
+        // y축 label들을 구성할 value array로 y축 모델 구성
+        let yModel = ChartAxisModel(axisValues: yValues)
         
-        let coordsSpace = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+        let chartFrame = ExamplesDefaults.chartFrame(view.bounds)
+//        let chartFrame = chartView.bounds
+        let chartSettings = ExamplesDefaults.chartSettingsWithPanZoom
+        
+        let coordsSpace = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)   // axis layer 생성
         let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         
-        let chartPointsLineLayer = ChartCandleStickLayer<ChartPointCandleStick>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, itemWidth: 5, strokeWidth: 0.6, increasingColor: .green, decreasingColor: .red)
         
-        let guidelineSettings = ChartGuideLinesLayerSettings(linesColor: .black, linesWidth: ExamplesDefaults.guidelinesWidth)
-        let guidelineLayer = ChartGuideLinesLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: guidelineSettings)
+        let chartPointsLineLayer = ChartCandleStickLayer<ChartPointCandleStick>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, itemWidth: 5, strokeWidth: 1, increasingColor: .red, decreasingColor: .blue, isHiddenRectStroke: true)
+//        let guidelineSettings = ChartGuideLinesLayerSettings(linesColor: .red, linesWidth: ExamplesDefaults.guidelinesWidth)
+//        let guidelineLayer = ChartGuideLinesLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: guidelineSettings)
+//
+//        let dividersSettings = ChartDividersLayerSettings(linesColor: .green, linesWidth: ExamplesDefaults.guidelinesWidth, start: 4, end: 0)
+//        let dividersLayer = ChartDividersLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: dividersSettings)
         
-        let dividersSettings = ChartDividersLayerSettings(linesColor: .black, linesWidth: ExamplesDefaults.guidelinesWidth, start: 3, end: 0)
-        let dividersLayer = ChartDividersLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: dividersSettings)
-        
-        let candleChart = Chart(frame: chartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, guidelineLayer, dividersLayer, chartPointsLineLayer])
+        let candleChart = Chart(frame: chartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, chartPointsLineLayer])
         
         view.addSubview(candleChart.view)
         self.chart = candleChart
-    
+        
     }
     
 

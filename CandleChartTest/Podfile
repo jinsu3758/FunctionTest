@@ -7,7 +7,8 @@ target 'CandleChartTest' do
 
   # Pods for CandleChartTest
 
-  pod 'SwiftCharts', '~> 0.6.5'
+#pod 'SwiftCharts', '~> 0.6.5'
+  pod 'HSStockChart'
   target 'CandleChartTestTests' do
     inherit! :search_paths
     # Pods for testing

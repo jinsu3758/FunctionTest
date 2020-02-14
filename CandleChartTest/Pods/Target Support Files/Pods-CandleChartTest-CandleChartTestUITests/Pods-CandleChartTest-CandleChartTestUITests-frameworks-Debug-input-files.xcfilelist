@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-CandleChartTest-CandleChartTestUITests/Pods-CandleChartTest-CandleChartTestUITests-frameworks.sh
-${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework
+${BUILT_PRODUCTS_DIR}/HSStockChart/HSStockChart.framework

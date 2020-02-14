@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftCharts
+//import SwiftCharts
 
 struct ExamplesDefaults {
     
@@ -44,7 +44,7 @@ struct ExamplesDefaults {
         chartSettings.labelsToAxisSpacingX = 5
         chartSettings.labelsToAxisSpacingY = 5
         chartSettings.axisTitleLabelsToLabelsSpacing = 4
-        chartSettings.axisStrokeWidth = 0.2
+        chartSettings.axisStrokeWidth = 0.2 // 차트 axis 굵기
         chartSettings.spacingBetweenAxesX = 8
         chartSettings.spacingBetweenAxesY = 8
         chartSettings.labelsSpacing = 0
@@ -86,7 +86,7 @@ struct ExamplesDefaults {
     }
     
     static var guidelinesWidth: CGFloat {
-        return 0.1
+        return 0.2
     }
     
     static var minBarSpacing: CGFloat {

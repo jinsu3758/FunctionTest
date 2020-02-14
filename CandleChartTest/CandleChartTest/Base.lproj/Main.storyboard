@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,102 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CandleChartTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJa-0m-K1a">
+                                <rect key="frame" x="358" y="54" width="46" height="30"/>
+                                <state key="normal" title="candle"/>
+                                <connections>
+                                    <segue destination="hmR-LI-Vmm" kind="show" id="kwp-ap-s54"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zl3-JE-eEZ">
+                                <rect key="frame" x="313" y="54" width="30" height="30"/>
+                                <state key="normal" title="line"/>
+                                <connections>
+                                    <segue destination="RUK-AN-qa6" kind="show" id="R4Z-Er-Kss"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Zl3-JE-eEZ" firstAttribute="centerY" secondItem="kJa-0m-K1a" secondAttribute="centerY" id="0L0-Bj-h5C"/>
+                            <constraint firstItem="kJa-0m-K1a" firstAttribute="leading" secondItem="Zl3-JE-eEZ" secondAttribute="trailing" constant="15" id="GPm-QP-Ks2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kJa-0m-K1a" secondAttribute="trailing" constant="10" id="myS-x7-3sU"/>
+                            <constraint firstItem="kJa-0m-K1a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="uKE-kK-rDt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aMr-SG-xeA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="138"/>
+        </scene>
+        <!--Candle Stick Interactive View Controller-->
+        <scene sceneID="ys0-th-LZy">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="hmR-LI-Vmm" customClass="CandleStickInteractiveViewController" customModule="CandleChartTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sGK-CR-XXE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgs-xT-Xds">
+                                <rect key="frame" x="184" y="44" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="backVC:" destination="hmR-LI-Vmm" eventType="touchUpInside" id="Sqn-jx-cjZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Kgs-xT-Xds" firstAttribute="top" secondItem="89x-hF-C9U" secondAttribute="top" id="RQP-ce-HD6"/>
+                            <constraint firstItem="Kgs-xT-Xds" firstAttribute="centerX" secondItem="sGK-CR-XXE" secondAttribute="centerX" id="wLG-aM-SVF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="89x-hF-C9U"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rdw-sH-yUT"/>
+                    <connections>
+                        <outlet property="backBtn" destination="Kgs-xT-Xds" id="mPW-6c-JIs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UHf-HX-NM6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1046" y="138"/>
+        </scene>
+        <!--Line Chart View Controller-->
+        <scene sceneID="f0U-eo-o0i">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="RUK-AN-qa6" customClass="LineChartViewController" customModule="CandleChartTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DVg-R2-TKP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X72-aE-h5f">
+                                <rect key="frame" x="184" y="59" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="backVC:" destination="hmR-LI-Vmm" eventType="touchUpInside" id="Cfa-5O-YRY"/>
+                                    <action selector="backVC:" destination="RUK-AN-qa6" eventType="touchUpInside" id="wjf-wT-6qa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="X72-aE-h5f" firstAttribute="centerX" secondItem="DVg-R2-TKP" secondAttribute="centerX" id="3N7-RC-hoe"/>
+                            <constraint firstItem="X72-aE-h5f" firstAttribute="top" secondItem="wa7-H9-C1U" secondAttribute="top" constant="15" id="dSA-4t-viB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wa7-H9-C1U"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GDZ-z6-M55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="02D-q0-BuB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1828" y="29"/>
         </scene>
     </scenes>
 </document>
