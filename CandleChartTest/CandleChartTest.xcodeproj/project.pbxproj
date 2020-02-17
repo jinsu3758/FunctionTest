@@ -137,7 +137,8 @@
 		74315E4423EA902300C497FB /* ChartPointEllipseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74315DCF23EA902200C497FB /* ChartPointEllipseView.swift */; };
 		74315E4523EA902300C497FB /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74315DD023EA902200C497FB /* Optional.swift */; };
 		747DD45A23F1192300F2E1C1 /* LineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DD45923F1192300F2E1C1 /* LineChartViewController.swift */; };
-		747DD45E23F6270800F2E1C1 /* ZLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747DD45D23F6270800F2E1C1 /* ZLineChart.swift */; };
+		74C6839C23FA336A0085D0E2 /* ZLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6839B23FA336A0085D0E2 /* ZLineChart.swift */; };
+		74C683A123FA84520085D0E2 /* ZChartAxisModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C683A023FA84520085D0E2 /* ZChartAxisModel.swift */; };
 		CF687460B1FCFF3952B2A280 /* Pods_CandleChartTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80459553DC81F231BD4D1331 /* Pods_CandleChartTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -298,7 +299,8 @@
 		74315DCF23EA902200C497FB /* ChartPointEllipseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartPointEllipseView.swift; sourceTree = "<group>"; };
 		74315DD023EA902200C497FB /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		747DD45923F1192300F2E1C1 /* LineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartViewController.swift; sourceTree = "<group>"; };
-		747DD45D23F6270800F2E1C1 /* ZLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLineChart.swift; sourceTree = "<group>"; };
+		74C6839B23FA336A0085D0E2 /* ZLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLineChart.swift; sourceTree = "<group>"; };
+		74C683A023FA84520085D0E2 /* ZChartAxisModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZChartAxisModel.swift; sourceTree = "<group>"; };
 		80459553DC81F231BD4D1331 /* Pods_CandleChartTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CandleChartTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57DD5AC4FE9720F07E026EE /* Pods-CandleChartTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CandleChartTestTests.release.xcconfig"; path = "Target Support Files/Pods-CandleChartTestTests/Pods-CandleChartTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		C804AD2B85042C9303F59022 /* Pods_CandleChartTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CandleChartTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,6 +360,7 @@
 		742B6AB823E00E65003FB428 /* CandleChartTest */ = {
 			isa = PBXGroup;
 			children = (
+				74C6839A23FA2ACD0085D0E2 /* ZLineChart */,
 				74315D5023EA902200C497FB /* SwiftCharts */,
 				742B6AB923E00E65003FB428 /* AppDelegate.swift */,
 				742B6ABB23E00E65003FB428 /* SceneDelegate.swift */,
@@ -370,7 +373,7 @@
 				743157AD23E9662500C497FB /* CandleStickInteractiveViewController.swift */,
 				743159A523E976C000C497FB /* ZChartCandleStickLayer.swift */,
 				747DD45923F1192300F2E1C1 /* LineChartViewController.swift */,
-				747DD45D23F6270800F2E1C1 /* ZLineChart.swift */,
+				74C683A023FA84520085D0E2 /* ZChartAxisModel.swift */,
 			);
 			path = CandleChartTest;
 			sourceTree = "<group>";
@@ -586,6 +589,14 @@
 				74315DCF23EA902200C497FB /* ChartPointEllipseView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		74C6839A23FA2ACD0085D0E2 /* ZLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				74C6839B23FA336A0085D0E2 /* ZLineChart.swift */,
+			);
+			path = ZLineChart;
 			sourceTree = "<group>";
 		};
 		B1EBD8F7D017724508067D7D /* Pods */ = {
@@ -927,6 +938,7 @@
 				74315E0723EA902300C497FB /* ChartAxisValuesGeneratorDate.swift in Sources */,
 				74315E0B23EA902300C497FB /* ChartAxisModel.swift in Sources */,
 				74315E1923EA902300C497FB /* ChartAxisLabelsGeneratorBase.swift in Sources */,
+				74C683A123FA84520085D0E2 /* ZChartAxisModel.swift in Sources */,
 				74315E0923EA902300C497FB /* ChartAxisValuesGeneratorYFixedNonOverlapping.swift in Sources */,
 				74315E0323EA902300C497FB /* ChartAxisLabelsGenerator.swift in Sources */,
 				74315E2423EA902300C497FB /* CGPoint.swift in Sources */,
@@ -937,7 +949,7 @@
 				74315E2923EA902300C497FB /* BarsChart.swift in Sources */,
 				74315E2A23EA902300C497FB /* CGRect.swift in Sources */,
 				74315E1623EA902300C497FB /* ChartAxisValuesGeneratorXDividers.swift in Sources */,
-				747DD45E23F6270800F2E1C1 /* ZLineChart.swift in Sources */,
+				74C6839C23FA336A0085D0E2 /* ZLineChart.swift in Sources */,
 				74315E2B23EA902300C497FB /* ChartDrawerFunctions.swift in Sources */,
 				747DD45A23F1192300F2E1C1 /* LineChartViewController.swift in Sources */,
 				74315E3923EA902300C497FB /* ChartPointViewBar.swift in Sources */,
