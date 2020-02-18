@@ -20,8 +20,8 @@ class LineChartViewController: UIViewController {
         let xValues = chartPoints.map{$0.x}
         let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
         
-        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.red, lineWidth: 1.5, animDuration: 1, animDelay: 0)
-        let lineModel2 = ChartLineModel(chartPoints: chartPoints2, lineColor: UIColor.green, animDuration: 1, animDelay: 0)
+        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.red, lineWidth: 2, animDuration: 0, animDelay: 0)
+        let lineModel2 = ChartLineModel(chartPoints: chartPoints2, lineColor: UIColor.green, animDuration: 0, animDelay: 0)
         
         
         let xModel = ChartAxisModel(axisValues: xValues)
