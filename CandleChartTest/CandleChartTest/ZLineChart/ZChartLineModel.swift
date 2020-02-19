@@ -9,7 +9,7 @@
 import UIKit
 
 struct ZLineChartModel<T, M> {
-    var chartPoints: [ChartPoint] = []
+    let chartPoints: [ChartPoint]
     let lineColor: UIColor
     let lineWidth: CGFloat
     /// 선이 꺽이는 부분의 스타일
@@ -31,27 +31,36 @@ struct ZLineChartModel<T, M> {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = xDateFormat!
             xValue = chartPoints.map { ChartAxisValueDate(date: $0.0 as! Date, formatter: dateFormatter) }
+        case is Int.Type:
+            xValue = chartPoints.map { ChartAxisValueInt($0.0 as! Int)}
         default:
             break
         }
         
         switch M.self {
         case is Double.Type:
-            yValue = chartPoints.map { ChartAxisValueDouble($0.0 as! Double) }
+            yValue = chartPoints.map { ChartAxisValueDouble($0.1 as! Double) }
         case is Date.Type:
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = xDateFormat!
-            xValue = chartPoints.map { ChartAxisValueDate(date: $0.0 as! Date, formatter: dateFormatter) }
+            xValue = chartPoints.map { ChartAxisValueDate(date: $0.1 as! Date, formatter: dateFormatter) }
+        case is Int.Type:
+            yValue = chartPoints.map { ChartAxisValueInt($0.1 as! Int)}
         default:
             break
         }
         
+        self.chartPoints = zip(xValue, yValue).map { ChartPoint(x: $0, y: $1) }
         self.lineColor = lineColor
         self.lineWidth = lineWidth
         self.lineJoin = lineJoin
         self.lineCap = lineCap
         self.animDuration = animDuration
         self.animDelay = animDelay
+    }
+    
+    func getChartLineModel() -> ChartLineModel<ChartPoint> {
+        return ChartLineModel(chartPoints: chartPoints, lineColor: lineColor, lineWidth: lineWidth, lineJoin: lineJoin, lineCap: lineCap, animDuration: animDuration, animDelay: animDelay, dashPattern: nil)
     }
     
 }

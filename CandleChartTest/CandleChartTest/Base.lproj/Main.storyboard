@@ -26,7 +26,7 @@
                                 <rect key="frame" x="313" y="54" width="30" height="30"/>
                                 <state key="normal" title="line"/>
                                 <connections>
-                                    <segue destination="RUK-AN-qa6" kind="show" id="R4Z-Er-Kss"/>
+                                    <segue destination="o6w-Oe-xls" kind="show" id="4zU-nf-v37"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -44,6 +44,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="138"/>
+        </scene>
+        <!--Line Chart View Controller-->
+        <scene sceneID="fTc-0l-wWl">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="o6w-Oe-xls" customClass="LineChartViewController" customModule="CandleChartTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lpc-ND-7Jm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoP-8f-m94">
+                                <rect key="frame" x="184" y="59" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="backVC:" destination="o6w-Oe-xls" eventType="touchUpInside" id="mV1-c4-LYL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zoP-8f-m94" firstAttribute="top" secondItem="cED-x6-bUd" secondAttribute="top" constant="15" id="33u-5v-xhc"/>
+                            <constraint firstItem="zoP-8f-m94" firstAttribute="centerX" secondItem="lpc-ND-7Jm" secondAttribute="centerX" id="m4g-H0-dq8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cED-x6-bUd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="J9q-gf-NLg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoj-fW-kAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1059" y="-510"/>
         </scene>
         <!--Candle Stick Interactive View Controller-->
         <scene sceneID="ys0-th-LZy">
@@ -76,36 +105,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHf-HX-NM6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1046" y="138"/>
-        </scene>
-        <!--Line Chart View Controller-->
-        <scene sceneID="f0U-eo-o0i">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="RUK-AN-qa6" customClass="LineChartViewController" customModule="CandleChartTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DVg-R2-TKP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X72-aE-h5f">
-                                <rect key="frame" x="184" y="59" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="backVC:" destination="hmR-LI-Vmm" eventType="touchUpInside" id="Cfa-5O-YRY"/>
-                                    <action selector="backVC:" destination="RUK-AN-qa6" eventType="touchUpInside" id="wjf-wT-6qa"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="X72-aE-h5f" firstAttribute="centerX" secondItem="DVg-R2-TKP" secondAttribute="centerX" id="3N7-RC-hoe"/>
-                            <constraint firstItem="X72-aE-h5f" firstAttribute="top" secondItem="wa7-H9-C1U" secondAttribute="top" constant="15" id="dSA-4t-viB"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="wa7-H9-C1U"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="GDZ-z6-M55"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="02D-q0-BuB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1828" y="29"/>
         </scene>
     </scenes>
 </document>

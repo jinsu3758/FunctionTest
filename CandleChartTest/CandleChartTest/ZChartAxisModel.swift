@@ -9,20 +9,23 @@
 import UIKit
 
 struct ZChartAxisModel<T, M> {
-    fileprivate let chartSettings: ChartSettings
-    fileprivate let labelSettings: ChartLabelSettings
-    fileprivate let chartFrame: CGRect
+    let chartSettings: ChartSettings
+    let labelSettings: ChartLabelSettings
+    let lineColor: UIColor
+    let axisDirection: AxisDirection
+    let chartFrame: CGRect
+    
     fileprivate var xValue: [ChartAxisValue] = []
     fileprivate var yValue: [ChartAxisValue] = []
-    fileprivate let lineColor: UIColor
     var xAxisTitle: String?
     var yAxisTitle: String?
     
-    init(chartFrame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, labelSettings: ChartLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 12)), xAxisValue: [T], yAxisValue: [M], lineColor: UIColor = .black, dateFormat: String = "MM dd") {
+    init(chartFrame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, labelSettings: ChartLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 12)), axisDirection: AxisDirection = .leftBottom, xAxisValue: [T], yAxisValue: [M], lineColor: UIColor = .black, dateFormat: String = "MM dd") {
         self.chartFrame = chartFrame
         self.chartSettings = chartSettings
         self.labelSettings = labelSettings
         self.lineColor = lineColor
+        self.axisDirection = axisDirection
         switch T.self {
         case is Double.Type:
             xValue = xAxisValue.map { ChartAxisValueDouble($0 as! Double, labelSettings: labelSettings)}
@@ -30,6 +33,8 @@ struct ZChartAxisModel<T, M> {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = dateFormat
             xValue = xAxisValue.map { ChartAxisValueDate(date: $0 as! Date, formatter: dateFormatter, labelSettings: labelSettings) }
+        case is Int.Type:
+            xValue = xAxisValue.map { ChartAxisValueInt($0 as! Int, labelSettings: labelSettings)}
         default:
             break
         }
@@ -40,6 +45,8 @@ struct ZChartAxisModel<T, M> {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = dateFormat
             yValue = yAxisValue.map { ChartAxisValueDate(date: $0 as! Date, formatter: dateFormatter, labelSettings: labelSettings) }
+        case is Int.Type:
+            yValue = yAxisValue.map { ChartAxisValueInt($0 as! Int, labelSettings: labelSettings)}
         default:
             break
         }
@@ -48,7 +55,7 @@ struct ZChartAxisModel<T, M> {
     }
     
     
-    func getAxisSpace(axisDirection: AxisDirection = .leftBottom) -> (ChartAxisLayer, ChartAxisLayer, CGRect) {
+    func getAxisSpace() -> (ChartAxisLayer, ChartAxisLayer, CGRect) {
         let xModel = xAxisTitle != nil ? ChartAxisModel(axisValues: xValue, lineColor: lineColor, axisTitleLabel: ChartAxisLabel(text: xAxisTitle!, settings: labelSettings)) : ChartAxisModel(axisValues: xValue, lineColor: lineColor)
         let yModel = yAxisTitle != nil ? ChartAxisModel(axisValues: yValue, lineColor: lineColor, axisTitleLabel: ChartAxisLabel(text: yAxisTitle!, settings: labelSettings)) : ChartAxisModel(axisValues: yValue, lineColor: lineColor)
         
