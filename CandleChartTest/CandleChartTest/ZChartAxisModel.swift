@@ -1,77 +1,58 @@
+////
+////  ZChartAxisModel.swift
+////  CandleChartTest
+////
+////  Created by 박진수 on 19/02/2020.
+////  Copyright © 2020 박진수. All rights reserved.
+////
 //
-//  ZChartAxisModel.swift
-//  CandleChartTest
+//import UIKit
 //
-//  Created by 박진수 on 17/02/2020.
-//  Copyright © 2020 박진수. All rights reserved.
+//class ZChartAxisModel<T>: ChartAxisModel {
+//    let labelSettings: ChartLabelSettings
+//    
+//    init(axisValue: [T], labelSetting: ChartLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0)), lineColor: UIColor = .black, axisTitle: String? = nil, dateFormat: String = "MM dd") {
+//        self.labelSettings = labelSetting
+//        var xValue: [ChartAxisValue] = []
+//        switch T.self {
+//        case is Double.Type:
+//            xValue = axisValue.map { ChartAxisValueDouble($0 as! Double, labelSettings: labelSetting)}
+//        case is Date.Type:
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = dateFormat
+//            xValue = axisValue.map { ChartAxisValueDate(date: $0 as! Date, formatter: dateFormatter, labelSettings: labelSettings) }
+//        case is Int.Type:
+//            xValue = axisValue.map { ChartAxisValueInt($0 as! Int, labelSettings: labelSettings)}
+//        default:
+//            break
+//        }
+////        axisTitle != nil ? super.init(axisValues: xValue, lineColor: lineColor, axisTitleLabel: ChartAxisLabel(text: axisTitle!, settings: labelSetting)) : super.init(axisValues: xValue, lineColor: lineColor)
+//        
+//    }
+//    
+//    fileprivate convenience init(axisValues: [ChartAxisValue], lineColor: UIColor = UIColor.black, axisTitleLabel: ChartAxisLabel, labelsConflictSolver: ChartAxisLabelsConflictSolver? = nil, leadingPadding: ChartAxisPadding = .none, trailingPadding: ChartAxisPadding = .none, labelSpaceReservationMode: AxisLabelsSpaceReservationMode = .minPresentedSize, clipContents: Bool = false) {
+//        self.init(axisValues: axisValues, lineColor: lineColor, axisTitleLabels: [axisTitleLabel], labelsConflictSolver: labelsConflictSolver, leadingPadding: leadingPadding, trailingPadding: trailingPadding, labelSpaceReservationMode: labelSpaceReservationMode, clipContents: clipContents)
+//    }
+//    
+//    public convenience init(axisValues: [ChartAxisValue], lineColor: UIColor = UIColor.black, axisTitleLabels: [ChartAxisLabel] = [], labelsConflictSolver: ChartAxisLabelsConflictSolver? = nil, leadingPadding: ChartAxisPadding = .none, trailingPadding: ChartAxisPadding = .none, labelSpaceReservationMode: AxisLabelsSpaceReservationMode = .minPresentedSize, clipContents: Bool = false) {
+//        precondition(!axisValues.isEmpty, "Axis cannot be empty")
+//        
+//        var scalars: [Double] = []
+//        var dict = [Double: [ChartAxisLabel]]()
+//        for axisValue in axisValues {
+//            scalars.append(axisValue.scalar)
+//            dict[axisValue.scalar] = axisValue.labels
+//        }
+//        let (firstModelValue, lastModelValue) = (axisValues.first!.scalar, axisValues.last!.scalar)
+//        
+//        let fixedArrayGenerator = ChartAxisValuesGeneratorFixed(values: scalars)
+//        let fixedLabelGenerator = ChartAxisLabelsGeneratorFixed(dict: dict)
+//        
+//        super.init(lineColor: lineColor, firstModelValue: firstModelValue, lastModelValue: lastModelValue, axisTitleLabels: axisTitleLabels, axisValuesGenerator: fixedArrayGenerator, labelsGenerator: fixedLabelGenerator, labelsConflictSolver: labelsConflictSolver, leadingPadding: leadingPadding, trailingPadding: trailingPadding, labelSpaceReservationMode: labelSpaceReservationMode, clipContents: clipContents)
+//    }
+//    
+//    public convenience init(lineColor: UIColor = UIColor.black, firstModelValue: Double, lastModelValue: Double, axisTitleLabel: ChartAxisLabel, axisValuesGenerator: ChartAxisValuesGenerator, labelsGenerator: ChartAxisLabelsGenerator, labelsConflictSolver: ChartAxisLabelsConflictSolver? = nil, leadingPadding: ChartAxisPadding = .none, trailingPadding: ChartAxisPadding = .none, labelSpaceReservationMode: AxisLabelsSpaceReservationMode = .minPresentedSize, clipContents: Bool = false) {
+//        super.init(lineColor: lineColor, firstModelValue: firstModelValue, lastModelValue: lastModelValue, axisTitleLabels: [axisTitleLabel], axisValuesGenerator: axisValuesGenerator, labelsGenerator: labelsGenerator, labelsConflictSolver: labelsConflictSolver, leadingPadding: leadingPadding, trailingPadding: trailingPadding, labelSpaceReservationMode: labelSpaceReservationMode, clipContents: clipContents)
+//    }
+//}
 //
-
-import UIKit
-
-struct ZChartAxisModel<T, M> {
-    let chartSettings: ChartSettings
-    let labelSettings: ChartLabelSettings
-    let lineColor: UIColor
-    let axisDirection: AxisDirection
-    let chartFrame: CGRect
-    
-    fileprivate var xValue: [ChartAxisValue] = []
-    fileprivate var yValue: [ChartAxisValue] = []
-    var xAxisTitle: String?
-    var yAxisTitle: String?
-    
-    init(chartFrame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, labelSettings: ChartLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 12)), axisDirection: AxisDirection = .leftBottom, xAxisValue: [T], yAxisValue: [M], lineColor: UIColor = .black, dateFormat: String = "MM dd") {
-        self.chartFrame = chartFrame
-        self.chartSettings = chartSettings
-        self.labelSettings = labelSettings
-        self.lineColor = lineColor
-        self.axisDirection = axisDirection
-        switch T.self {
-        case is Double.Type:
-            xValue = xAxisValue.map { ChartAxisValueDouble($0 as! Double, labelSettings: labelSettings)}
-        case is Date.Type:
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = dateFormat
-            xValue = xAxisValue.map { ChartAxisValueDate(date: $0 as! Date, formatter: dateFormatter, labelSettings: labelSettings) }
-        case is Int.Type:
-            xValue = xAxisValue.map { ChartAxisValueInt($0 as! Int, labelSettings: labelSettings)}
-        default:
-            break
-        }
-        switch M.self {
-        case is Double.Type:
-            yValue = yAxisValue.map { ChartAxisValueDouble($0 as! Double, labelSettings: labelSettings)}
-        case is Date.Type:
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = dateFormat
-            yValue = yAxisValue.map { ChartAxisValueDate(date: $0 as! Date, formatter: dateFormatter, labelSettings: labelSettings) }
-        case is Int.Type:
-            yValue = yAxisValue.map { ChartAxisValueInt($0 as! Int, labelSettings: labelSettings)}
-        default:
-            break
-        }
-        
-        
-    }
-    
-    
-    func getAxisSpace() -> (ChartAxisLayer, ChartAxisLayer, CGRect) {
-        let xModel = xAxisTitle != nil ? ChartAxisModel(axisValues: xValue, lineColor: lineColor, axisTitleLabel: ChartAxisLabel(text: xAxisTitle!, settings: labelSettings)) : ChartAxisModel(axisValues: xValue, lineColor: lineColor)
-        let yModel = yAxisTitle != nil ? ChartAxisModel(axisValues: yValue, lineColor: lineColor, axisTitleLabel: ChartAxisLabel(text: yAxisTitle!, settings: labelSettings)) : ChartAxisModel(axisValues: yValue, lineColor: lineColor)
-        
-        switch axisDirection {
-        case .leftTop:
-            let coordsSpace = ChartCoordsSpaceLeftTopSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
-        case .leftBottom:
-            let coordsSpace = ChartCoordsSpaceLeftTopSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
-        case .rightTop:
-            let coordsSpace = ChartCoordsSpaceLeftTopSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
-        case .rightBottom:
-            let coordsSpace = ChartCoordsSpaceLeftTopSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
-        }
-    }
-}

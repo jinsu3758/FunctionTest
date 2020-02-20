@@ -16,20 +16,54 @@ enum AxisDirection {
 }
 
 class ZLineChart<T, M>: UIView {
+    fileprivate var chart: Chart?
+    var xModel: ChartAxisModel
+    var yModel: ChartAxisModel
+    var chartSettings: ChartSettings
+    var chartFrame: CGRect
+    var axisDirection: AxisDirection
+    var lineModels: [ZLineChartModel<T, M>]
     
-    init(chartAxisModel: ZChartAxisModel<T, M>, lineModels: [ZLineChartModel<T, M>] ) {
-        super.init(frame: chartAxisModel.chartFrame)
-        let (xAxisLayer, yAxisLayer, innerFrame) = chartAxisModel.getAxisSpace()
-        let chartLineModels = lineModels.map { $0.getChartLineModel() }
-        let chartPointsLineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: chartLineModels)
-        let chart = Chart(frame: chartAxisModel.chartFrame, innerFrame: innerFrame, settings: chartAxisModel.chartSettings, layers:
-            [xAxisLayer, yAxisLayer, chartPointsLineLayer])
-        self.addSubview(chart.view)
+    init(frame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, xModel: ChartAxisModel, yModel: ChartAxisModel, lineModels: [ZLineChartModel<T, M>], axisDirection: AxisDirection = .leftBottom) {
+        self.chartFrame = frame
+        self.chartSettings = chartSettings
+        self.xModel = xModel
+        self.yModel = yModel
+        self.axisDirection = axisDirection
+        self.lineModels = lineModels
+        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    fileprivate func getAxisSpace() -> (ChartAxisLayer, ChartAxisLayer, CGRect) {
+        switch axisDirection {
+        case .leftTop:
+            let coordsSpace = ChartCoordsSpaceLeftTopSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+        case .leftBottom:
+            let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+        case .rightTop:
+            let coordsSpace = ChartCoordsSpaceRightTopSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+        case .rightBottom:
+            let coordsSpace = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+            return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+        }
+    }
+    
+    func setChart() {
+        let (xAxisLayer, yAxisLayer, innerFrame) = getAxisSpace()
+        let chartLineModels = lineModels.map { $0.getChartLineModel() }
+        let chartLineLayers = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: chartLineModels)
+        let chart = Chart(frame: chartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, chartLineLayers])
+        self.chart = chart
+        self.addSubview(chart.view)
+    }
+    
     
     
 

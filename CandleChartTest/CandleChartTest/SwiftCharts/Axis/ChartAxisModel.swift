@@ -50,6 +50,38 @@ open class ChartAxisModel {
     let labelSpaceReservationMode: AxisLabelsSpaceReservationMode
     let clipContents: Bool
     
+    public convenience init<T>(value: [T], labelSettings: ChartLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0)), lineColor: UIColor = .black, axisTitle: String? = nil, dateFormat: String = "MM dd") {
+        var xValue: [ChartAxisValue] = []
+        switch T.self {
+        case is Double.Type:
+            xValue = value.map { ChartAxisValueDouble($0 as! Double, labelSettings: labelSettings)}
+        case is Date.Type:
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = dateFormat
+            xValue = value.map { ChartAxisValueDate(date: $0 as! Date, formatter: dateFormatter, labelSettings: labelSettings) }
+        case is Int.Type:
+            xValue = value.map { ChartAxisValueInt($0 as! Int, labelSettings: labelSettings)}
+        default:
+            break
+        }
+        if let axisTitle = axisTitle {
+            self.init(axisValues: xValue, lineColor: lineColor, axisTitleLabel: ChartAxisLabel(text: axisTitle, settings: labelSettings))
+        }
+        else {
+            self.init(axisValues: xValue, lineColor: lineColor)
+        }
+    }
+    
+    public convenience init(axisLineColor: UIColor = UIColor.black, labelSettings: ChartLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0)), firstModelValue: Double, lastModelValue: Double, axisTitle: String? = nil, axisValuesGenerator: ChartAxisValuesGenerator, labelsGenerator: ChartAxisLabelsGenerator) {
+        if let axisTitle = axisTitle {
+            self.init(lineColor: axisLineColor, firstModelValue: firstModelValue, lastModelValue: lastModelValue, axisTitleLabels: [ChartAxisLabel(text: axisTitle, settings: labelSettings)], axisValuesGenerator: axisValuesGenerator, labelsGenerator: labelsGenerator)
+        }
+        else {
+            self.init(lineColor: axisLineColor, firstModelValue: firstModelValue, lastModelValue: lastModelValue, axisValuesGenerator: axisValuesGenerator, labelsGenerator: labelsGenerator)
+        }
+        
+    }
+    
     public convenience init(axisValues: [ChartAxisValue], lineColor: UIColor = UIColor.black, axisTitleLabel: ChartAxisLabel, labelsConflictSolver: ChartAxisLabelsConflictSolver? = nil, leadingPadding: ChartAxisPadding = .none, trailingPadding: ChartAxisPadding = .none, labelSpaceReservationMode: AxisLabelsSpaceReservationMode = .minPresentedSize, clipContents: Bool = false) {
         self.init(axisValues: axisValues, lineColor: lineColor, axisTitleLabels: [axisTitleLabel], labelsConflictSolver: labelsConflictSolver, leadingPadding: leadingPadding, trailingPadding: trailingPadding, labelSpaceReservationMode: labelSpaceReservationMode, clipContents: clipContents)
     }

@@ -20,8 +20,8 @@ open class ChartAxisValuesGeneratorNice: ChartAxisGeneratorMultiplier {
     
     fileprivate var minValue: Double
     fileprivate var maxValue: Double
-    fileprivate let minSpace: CGFloat
-    fileprivate let preferredDividers: Int
+    fileprivate let minSpace: CGFloat   // 분할점마다 최소한의 공간
+    fileprivate let preferredDividers: Int  // 분할될 기준점 개수
     
     fileprivate let maxTextSize: CGFloat
     
