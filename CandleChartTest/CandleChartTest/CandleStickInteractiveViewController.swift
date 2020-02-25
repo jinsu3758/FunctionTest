@@ -19,7 +19,7 @@ class CandleStickInteractiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
+        let labelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 12))
         
         var readFormatter = DateFormatter()
         readFormatter.dateFormat = "dd.MM.yyyy"
@@ -124,8 +124,8 @@ class CandleStickInteractiveViewController: UIViewController {
         let xValues = generateDateAxisValues(10, year: 2015)
         let yValues = stride(from: 20, through: 55, by: 5).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)}
         
-        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
+        let xModel = ChartAxisModel(axisValues: xValues)
+        let yModel = ChartAxisModel(axisValues: yValues)
         
         let defaultChartFrame = ExamplesDefaults.chartFrame(view.bounds)
         let infoViewHeight: CGFloat = 50

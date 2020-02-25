@@ -28,7 +28,7 @@ class LineChartViewController: UIViewController {
 //        let chartAxisModel = ZChartAxisModel(chartFrame: CGRect(x: 0, y: 30, width: self.view.bounds.width, height: self.view.bounds.height - 90), xAxisValue: [1,2,3,4,5,6,7,8,9,10,11,12].map{ Double($0) }, yAxisValue: [0,2,4,6,8,10,12,14].map{ Double($0) })
         let chartLineModel = ZLineChartModel(chartPoints: [(1.0, 3), (2, 5), (3, 7.5), (4, 10), (5, 6), (6, 12)])
 
-        let chart = ZLineChart(frame: CGRect(x: 0, y: 30, width: self.view.bounds.width, height: self.view.bounds.height - 90), xModel: xModel, yModel: yAxisModel, lineModels: [chartLineModel])
+        let chart = ZLineChart(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height - 90), xModel: xModel, yModel: yAxisModel, lineModels: [chartLineModel])
         self.view.addSubview(chart)
         chart.setChart()
         

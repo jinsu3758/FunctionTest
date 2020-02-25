@@ -40,7 +40,7 @@ public struct ChartSettings {
     public var axisTitleLabelsToLabelsSpacing: CGFloat = 5
 
     /// The stroke width in points of the axis lines
-    public var axisStrokeWidth: CGFloat = 1.0
+    public var axisStrokeWidth: CGFloat = 0
     
     public var zoomPan = ChartSettingsZoomPan()
     
@@ -54,9 +54,9 @@ public struct ChartSettings {
 }
 
 public struct ChartSettingsZoomPan {
-    public var panEnabled = false
+    public var panEnabled = true
     
-    public var zoomEnabled = false
+    public var zoomEnabled = true
 
     public var minZoomX: CGFloat?
     

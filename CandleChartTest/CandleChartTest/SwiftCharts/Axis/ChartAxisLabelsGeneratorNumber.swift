@@ -16,7 +16,7 @@ open class ChartAxisLabelsGeneratorNumber: ChartAxisLabelsGeneratorBase {
     
     public let formatter: NumberFormatter
     
-    public init(labelSettings: ChartLabelSettings, formatter: NumberFormatter = ChartAxisLabelsGeneratorNumber.defaultFormatter) {
+    public init(labelSettings: ChartLabelSettings = ChartLabelSettings(), formatter: NumberFormatter = ChartAxisLabelsGeneratorNumber.defaultFormatter) {
         self.labelSettings = labelSettings
         self.formatter = formatter
     }
