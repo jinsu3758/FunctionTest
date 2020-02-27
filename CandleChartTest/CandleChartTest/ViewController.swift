@@ -85,7 +85,7 @@ class ViewController: UIViewController {
             ChartPointCandleStick(date: date("29.12.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
         ]
         
-        let candleChart = ZCandleChart(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height - 10), chartPoints: chartPoints, dateComponent: .day)
+        let candleChart = ZCandleChart(frame: CGRect(x: 0, y: 70, width: self.view.bounds.width, height: self.view.bounds.height - 80), chartPoints: chartPoints, dateComponent: .day)
         self.view.addSubview(candleChart)
         candleChart.setChart()
         
@@ -97,17 +97,17 @@ class ViewController: UIViewController {
 //        let firstDate = date("01.10.2015")
 //        let lastDate = date("31.10.2015")
 //        let xModel = ChartAxisModel(firstModelValue: firstDate.timeIntervalSince1970, lastModelValue: lastDate.timeIntervalSince1970, axisValuesGenerator: xGeneratorDate, labelsGenerator: xLabelGeneratorDate)
-//        
+//
 //        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Axis title", settings: labelSettings.defaultVertical()))
 //        let chartFrame = ExamplesDefaults.chartFrame(view.bounds)
-//        
+//
 //        let chartSettings = ExamplesDefaults.chartSettings // for now zoom & pan disabled, layer needs correct scaling mode.
 //
 //        let coordsSpace = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
 //        let (xAxisLayer, yAxisLayer, innerFrame) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
-//        
+//
 //        let chartPointsLineLayer = ChartCandleStickLayer<ChartPointCandleStick>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints)
-//        
+//
 //        let chart = Chart(
 //            frame: chartFrame,
 //            innerFrame: innerFrame,

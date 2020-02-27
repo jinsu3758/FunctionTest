@@ -13,6 +13,14 @@ class LineChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var displayFormatter = DateFormatter()
+               displayFormatter.dateFormat = "MMM dd"
+        var readFormatter = DateFormatter()
+        readFormatter.dateFormat = "dd.MM.yyyy"
+        let date = {(str: String) -> Date in
+            return readFormatter.date(from: str)!
+        }
+        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
         let xAxisModel = ChartAxisModel(value: [1,2,3,4,5,6,7,8,9,10,11,12])
         let xValueGenerator = ChartAxisValuesGeneratorNice(minValue: 0, maxValue: 10, preferredDividers: 8, minSpace: 3, maxTextSize: 20)
 
@@ -23,12 +31,18 @@ class LineChartViewController: UIViewController {
 
         let xGe3 = ChartAxisValuesGeneratorXDividers(minValue: 0, maxValue: 20, preferredDividers: 6, nice: false, formatter: numberFormatter, font: UIFont.systemFont(ofSize: 13))
         
-        let xModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 10, axisValuesGenerator: xGe3, labelsGenerator: xLabelGeneratoir)
-        let yAxisModel = ChartAxisModel(value: [0,2,4,6,8,10,12,14])
+//        let xModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 10, axisValuesGenerator: xGe3, labelsGenerator: xLabelGeneratoir)
+        let firstDate = date("01.10.2015")
+        let lastDate = date("09.10.2015")
+        let xGeneratorDate = ChartAxisValuesGeneratorDate(unit: .day, preferredDividers:2, minSpace: 1, maxTextSize: 12)
+        let xLabelGeneratorDate = ChartAxisLabelsGeneratorDate(labelSettings: labelSettings, formatter: displayFormatter)
+        let xModel = ChartAxisModel(firstModelValue: firstDate.timeIntervalSince1970, lastModelValue: lastDate.timeIntervalSince1970, axisValuesGenerator: xGeneratorDate, labelsGenerator: xLabelGeneratorDate)
+        
+        let yAxisModel = ChartAxisModel(value: [0,4,8,12])
 //        let chartAxisModel = ZChartAxisModel(chartFrame: CGRect(x: 0, y: 30, width: self.view.bounds.width, height: self.view.bounds.height - 90), xAxisValue: [1,2,3,4,5,6,7,8,9,10,11,12].map{ Double($0) }, yAxisValue: [0,2,4,6,8,10,12,14].map{ Double($0) })
-        let chartLineModel = ZLineChartModel(chartPoints: [(1.0, 3), (2, 5), (3, 7.5), (4, 10), (5, 6), (6, 12)])
+        let chartLineModel = ZLineChartModel(chartPoints: [(date("01.10.2015"), 3), (date("02.10.2015"), 5), (date("03.10.2015"), 7.5), (date("06.10.2015"), 10), (date("08.10.2015"), 6), (date("09.10.2015"), 12)], xDateFormat: "MMM dd")
 
-        let chart = ZLineChart(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height - 90), xModel: xModel, yModel: yAxisModel, lineModels: [chartLineModel])
+        let chart = ZLineChart(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height - 160), xModel: xModel, yModel: yAxisModel, lineModels: [chartLineModel])
         self.view.addSubview(chart)
         chart.setChart()
         

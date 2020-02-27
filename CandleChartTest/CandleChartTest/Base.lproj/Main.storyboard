@@ -29,11 +29,20 @@
                                     <segue destination="o6w-Oe-xls" kind="show" id="4zU-nf-v37"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfu-1K-7la">
+                                <rect key="frame" x="268" y="54" width="30" height="30"/>
+                                <state key="normal" title="bar"/>
+                                <connections>
+                                    <segue destination="Svd-fK-3cH" kind="show" id="21l-y1-gFM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Zl3-JE-eEZ" firstAttribute="centerY" secondItem="kJa-0m-K1a" secondAttribute="centerY" id="0L0-Bj-h5C"/>
                             <constraint firstItem="kJa-0m-K1a" firstAttribute="leading" secondItem="Zl3-JE-eEZ" secondAttribute="trailing" constant="15" id="GPm-QP-Ks2"/>
+                            <constraint firstItem="Zl3-JE-eEZ" firstAttribute="leading" secondItem="Yfu-1K-7la" secondAttribute="trailing" constant="15" id="HVs-Gl-SAz"/>
+                            <constraint firstItem="Yfu-1K-7la" firstAttribute="centerY" secondItem="Zl3-JE-eEZ" secondAttribute="centerY" id="MA9-GV-Ra5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kJa-0m-K1a" secondAttribute="trailing" constant="10" id="myS-x7-3sU"/>
                             <constraint firstItem="kJa-0m-K1a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="uKE-kK-rDt"/>
                         </constraints>
@@ -105,6 +114,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHf-HX-NM6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1046" y="138"/>
+        </scene>
+        <!--Bar Chart View Controller-->
+        <scene sceneID="hue-4h-PPw">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Svd-fK-3cH" customClass="BarChartViewController" customModule="CandleChartTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mLt-Ef-j2f">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgQ-sd-cIU">
+                                <rect key="frame" x="184" y="54" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="Svd-fK-3cH" eventType="touchUpInside" id="GCK-Vx-TIr"/>
+                                    <action selector="backVC:" destination="hmR-LI-Vmm" eventType="touchUpInside" id="xUL-60-s0K"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wgQ-sd-cIU" firstAttribute="top" secondItem="dpA-lF-RBH" secondAttribute="top" constant="10" id="2Mp-pq-gXK"/>
+                            <constraint firstItem="wgQ-sd-cIU" firstAttribute="centerX" secondItem="mLt-Ef-j2f" secondAttribute="centerX" id="oVP-Qr-ect"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dpA-lF-RBH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="kyw-ze-uJa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qQA-kN-fG7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045" y="863"/>
         </scene>
     </scenes>
 </document>
