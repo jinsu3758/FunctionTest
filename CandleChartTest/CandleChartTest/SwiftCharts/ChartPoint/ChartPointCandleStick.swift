@@ -15,11 +15,13 @@ open class ChartPointCandleStick: ChartPoint {
     public let close: Double
     public let low: Double
     public let high: Double
+    public let formatter: DateFormatter
     
     public init(date: Date, formatter: DateFormatter, high: Double, low: Double, open: Double, close: Double, labelHidden: Bool = false) {
         
         let x = ChartAxisValueDate(date: date, formatter: formatter)
         self.date = date
+        self.formatter = formatter
         x.hidden = labelHidden
         
         let highY = ChartAxisValueDouble(high)

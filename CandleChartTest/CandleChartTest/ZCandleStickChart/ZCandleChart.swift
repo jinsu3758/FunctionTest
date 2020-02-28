@@ -9,39 +9,49 @@
 import UIKit
 
 class ZCandleChart: UIView {
-    fileprivate var chart: Chart?
+    fileprivate var candleStickChart: Chart?
+    fileprivate var barChart: Chart?
+    
     var xModel: ChartAxisModel
     var yModel: ChartAxisModel
-    var chartPoints: [ChartPointCandleStick]
+    var barYmodel: ChartAxisModel
+    var candleStickChartPoints: [ChartPointCandleStick]
+    var barChartPoints: [ChartPoint] = []
     var chartSettings: ChartSettings
     var chartFrame: CGRect
     var axisDirection: AxisDirection
     var dateComponent: Calendar.Component
     
-    init(frame: CGRect, chartPoints: [ChartPointCandleStick], chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, axisDirection: AxisDirection = .rightBottom, dateComponent: Calendar.Component, axisLineColor: UIColor = .clear) {
-        self.chartPoints = chartPoints
+    init(frame: CGRect, candleStickChartPoints: [ChartPointCandleStick], barChartValues: [Double], chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, axisDirection: AxisDirection = .rightBottom, dateComponent: Calendar.Component, axisLineColor: UIColor = .clear) {
+        
+        self.candleStickChartPoints = candleStickChartPoints
         self.chartSettings = chartSettings
         self.chartFrame = frame
         self.axisDirection = axisDirection
         self.dateComponent = dateComponent
-        var min: Double = 0
-        var maxHighValue: Double {
-            for item in chartPoints {
-                if item.high > min { min = item.high }
-            }
-            return min
+        
+        var maxCandleHighValue: Double = 0
+        var maxBarValue: Double = 0
+        let zipChartPoints = zip(candleStickChartPoints, barChartValues)
+        for (candle, barValue) in zipChartPoints {
+            if candle.high > maxCandleHighValue { maxCandleHighValue = candle.high }
+            if barValue > maxBarValue { maxBarValue = barValue }
+            barChartPoints.append(ChartPoint(x: ChartAxisValueDate(date: candle.date, formatter: candle.formatter), y: ChartAxisValueDouble(barValue)))
         }
         
+        
         let xGenerator = ChartAxisValuesGeneratorDate(unit: dateComponent, preferredDividers: 2, minSpace: 1, maxTextSize: 12)
-        let yValues = stride(from: 20, through: maxHighValue, by: 5).map {ChartAxisValueDouble(Double($0))}
+        let yValues = stride(from: 20, through: maxCandleHighValue, by: 5).map {ChartAxisValueDouble(Double($0))}
+        let yGenerator = ChartAxisGeneratorMultiplier(2)
         let labelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: ChartLabelSettings())
+        let yLabelGenerator = ChartAxisLabelsGeneratorNumber()
         
-        let firstDate = chartPoints[0].date
-        let lastDate = chartPoints[chartPoints.count - 1].date
+        let firstDate = candleStickChartPoints[0].date
+        let lastDate = candleStickChartPoints[candleStickChartPoints.count - 1].date
         
-        print("\(maxHighValue)!!!")
         xModel = ChartAxisModel(lineColor: axisLineColor, firstModelValue: firstDate.timeIntervalSince1970, lastModelValue: lastDate.timeIntervalSince1970, axisValuesGenerator: xGenerator, labelsGenerator: labelGenerator)
         yModel = ChartAxisModel(axisValues: yValues, lineColor: axisLineColor)
+        barYmodel = ChartAxisModel(lineColor: axisLineColor, firstModelValue: 0, lastModelValue: maxBarValue, axisValuesGenerator: xGenerator, labelsGenerator: yLabelGenerator)
         
         super.init(frame: frame)
         
@@ -81,9 +91,23 @@ class ZCandleChart: UIView {
             v.isUserInteractionEnabled = false
             return v
         }
-        let candleStickLayer = ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, innerFrame: innerFrame, chartPoints: chartPoints, viewGenerator: viewGenerator)
+        
+        let barViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsViewsLayer, chart: Chart) -> UIView? in
+            let bottomLeft = layer.modelLocToScreenLoc(x: 0, y: 0)
+            
+            let barWidth: CGFloat = 30
+            
+            let settings = ChartBarViewSettings(animDuration: 0.5)
+            
+            let (p1, p2): (CGPoint, CGPoint) = {
+                return (CGPoint(x: chartPointModel.screenLoc.x, y: bottomLeft.y), CGPoint(x: chartPointModel.screenLoc.x, y: chartPointModel.screenLoc.y))
+            }()
+            return ChartPointViewBar(p1: p1, p2: p2, width: barWidth, bgColor: UIColor.blue.withAlphaComponent(0.6), settings: settings)
+        }
+        
+        let candleStickLayer = ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, innerFrame: innerFrame, chartPoints: candleStickChartPoints, viewGenerator: viewGenerator)
         let chart = Chart(frame: chartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, candleStickLayer])
-        self.chart = chart
+        self.candleStickChart = chart
         self.addSubview(chart.view)
     }
     
