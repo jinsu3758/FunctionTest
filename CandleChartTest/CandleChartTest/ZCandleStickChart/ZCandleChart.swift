@@ -106,6 +106,7 @@ class ZCandleChart: UIView {
         }
         
         let candleStickLayer = ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, innerFrame: innerFrame, chartPoints: candleStickChartPoints, viewGenerator: viewGenerator)
+        
         let chart = Chart(frame: chartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, candleStickLayer])
         self.candleStickChart = chart
         self.addSubview(chart.view)
