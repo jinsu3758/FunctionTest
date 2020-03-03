@@ -85,9 +85,11 @@ class ViewController: UIViewController {
             ChartPointCandleStick(date: date("29.12.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
         ]
         
-        let candleChart = ZCandleChart(frame: CGRect(x: 0, y: 70, width: self.view.bounds.width, height: self.view.bounds.height - 80), chartPoints: chartPoints, dateComponent: .day)
+        let barValues: [Double] = [15,20,54,24,23,43,23,43,23,43,23,43,55, 66, 77, 88, 99]
+        let candleChart = ZCandleChart(candleChartFrame: CGRect(x: 0, y: 70, width: self.view.bounds.width, height: self.view.bounds.height - 90), barChartFrame: CGRect(x: 0, y: self.view.bounds.height - 250, width: self.view.bounds.width, height: 100), dateComponent: .day)
+        
         self.view.addSubview(candleChart)
-        candleChart.setChart()
+        candleChart.setChart(candleStickChartPoints: chartPoints, barChartValues: barValues)
         
         
 //        let yValues = stride(from: 20, through: 55, by: 5).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)}
