@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol ZCandleChartDelegate {
+    func longPressedBegan(_ chartPoint: ChartPointCandleStick)
+    func longPressedMoved(_ chartPoint: ChartPointCandleStick)
+    func longPressedEnded(_ chartPoint: ChartPointCandleStick)
+}
+
 class ZCandleChart: UIView {
     fileprivate var candleStickChart: Chart?
     fileprivate var barChart: Chart?
+    fileprivate var trackerLayer: ChartPointsTrackerLayer<ChartPoint>?
     fileprivate let candleChartFrame: CGRect
     fileprivate let barChartFrame: CGRect
     
+    var delegate: ZCandleChartDelegate?
     var chartSettings: ChartSettings
     var axisDirection: AxisDirection
     var dateComponent: Calendar.Component
@@ -111,7 +119,27 @@ class ZCandleChart: UIView {
         self.addSubview(chart.view)
     }
     
+    func addTracker() {
+        
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension ZCandleChart: TrackerLayerDelegate {
+    func longPressedBegan(_ location: CGPoint) {
+        
+    }
+    
+    func longPressedMoved(_ location: CGPoint) {
+        
+    }
+    
+    func longPressedEnded(_ location: CGPoint) {
+        
+    }
+    
+    
 }
