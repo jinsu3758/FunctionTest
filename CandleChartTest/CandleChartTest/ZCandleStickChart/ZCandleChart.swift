@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 protocol ZCandleChartDelegate {
     func longPressedBegan(_ chartPoint: ChartPointCandleStick)
@@ -18,32 +19,34 @@ class ZCandleChart: UIView {
     fileprivate var candleStickChart: Chart?
     fileprivate var barChart: Chart?
     fileprivate var trackerLayer: ChartPointsTrackerLayer<ChartPoint>?
+    fileprivate var candleStickLayer: ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>?
     fileprivate let candleChartFrame: CGRect
     fileprivate let barChartFrame: CGRect
     
     var delegate: ZCandleChartDelegate?
     var chartSettings: ChartSettings
     var axisDirection: AxisDirection
-    var dateComponent: Calendar.Component
     var barWidth: CGFloat
     var strokeWidth: CGFloat
     var upColor: UIColor
     var downColor: UIColor
     var axisLineColor: UIColor
+    var trackerLineColor: UIColor
+    var trackerLineWidth: CGFloat
     
-    init(candleChartFrame: CGRect, barChartFrame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, axisDirection: AxisDirection = .rightBottom, dateComponent: Calendar.Component, barWidth: CGFloat = 5, strokeWidth: CGFloat = 0.5, upColor: UIColor = .red,  downColor: UIColor = .blue, axisLineColor: UIColor = .clear) {
+    init(candleChartFrame: CGRect, barChartFrame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, axisDirection: AxisDirection = .rightBottom, barWidth: CGFloat = 5, strokeWidth: CGFloat = 0.5, upColor: UIColor = .red,  downColor: UIColor = .blue, axisLineColor: UIColor = .clear, trackerLineColor: UIColor = .red, trackerLineWidth: CGFloat = 1) {
         self.chartSettings = chartSettings
         self.candleChartFrame = candleChartFrame
         self.barChartFrame = barChartFrame
         self.axisDirection = axisDirection
-        self.dateComponent = dateComponent
         self.barWidth = barWidth
         self.strokeWidth = strokeWidth
         self.upColor = upColor
         self.downColor = downColor
         self.axisLineColor = axisLineColor
+        self.trackerLineColor = trackerLineColor
+        self.trackerLineWidth = trackerLineWidth
         super.init(frame: candleChartFrame)
-        
     }
     
     fileprivate func getAxisSpace(xModel: ChartAxisModel, yModel: ChartAxisModel, frame: CGRect) -> (ChartAxisLayer, ChartAxisLayer, CGRect) {
@@ -61,9 +64,10 @@ class ZCandleChart: UIView {
             let coordsSpace = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: frame, xModel: xModel, yModel: yModel)
             return (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
         }
+        
     }
     
-    func setChart(candleStickChartPoints: [ChartPointCandleStick], barChartValues: [Double]) {
+    func setChart(candleStickChartPoints: [ChartPointCandleStick], barChartValues: [Double], dateComponent: Calendar.Component = .day) {
         var barChartModel: [ChartBarModel] = []
         var maxCandleHighValue: Double = 0
         var maxBarValue: Double = 0
@@ -78,7 +82,6 @@ class ZCandleChart: UIView {
         
         let xGenerator = ChartAxisValuesGeneratorDate(unit: dateComponent, preferredDividers: 2, minSpace: 1, maxTextSize: 12)
         let yValues = stride(from: 20, through: maxCandleHighValue, by: 5).map {ChartAxisValueDouble(Double($0))}
-        let yGenerator = ChartAxisGeneratorMultiplier(2)
         let labelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: ChartLabelSettings())
         let yLabelGenerator = ChartAxisLabelsGeneratorNumber()
         
@@ -89,7 +92,7 @@ class ZCandleChart: UIView {
         let yModel = ChartAxisModel(axisValues: yValues, lineColor: axisLineColor)
         let barYmodel = ChartAxisModel(lineColor: axisLineColor, firstModelValue: 0, lastModelValue: maxBarValue, axisValuesGenerator: xGenerator, labelsGenerator: yLabelGenerator)
         
-        let (xAxisLayer, yAxisLayer, innerFrame) = getAxisSpace(xModel: xModel, yModel: yModel, frame: candleChartFrame)
+        let (candleXAxisLayer, candleYAxisLayer, candleInnerFrame) = getAxisSpace(xModel: xModel, yModel: yModel, frame: candleChartFrame)
         let viewGenerator = {[unowned self] (chartPointModel: ChartPointLayerModel<ChartPointCandleStick>, layer: ChartPointsViewsLayer<ChartPointCandleStick, ChartCandleStickView>, chart: Chart) -> ChartCandleStickView? in
             let (chartPoint, screenLoc) = (chartPointModel.chartPoint, chartPointModel.screenLoc)
             
@@ -108,10 +111,13 @@ class ZCandleChart: UIView {
         
         let (barXAxisLayer, barYAxisLayer, barInnerFrame) = getAxisSpace(xModel: xModel, yModel: barYmodel, frame: barChartFrame)
         let barViewSettings = ChartBarViewSettings(animDuration: 0.5)
-        let candleStickLayer = ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, innerFrame: innerFrame, chartPoints: candleStickChartPoints, viewGenerator: viewGenerator)
+        candleStickLayer = ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>(xAxis: candleXAxisLayer.axis, yAxis: candleYAxisLayer.axis, innerFrame: candleInnerFrame, chartPoints: candleStickChartPoints, viewGenerator: viewGenerator)
+        trackerLayer = ChartPointsTrackerLayer(xAxis: candleXAxisLayer.axis, yAxis: candleYAxisLayer.axis, chartPoints: candleStickChartPoints, lineColor: trackerLineColor, lineWidth: trackerLineWidth)
+        trackerLayer?.delegate = self
         let barLayer = ChartBarsLayer(xAxis: barXAxisLayer.axis, yAxis: barYAxisLayer.axis, bars: barChartModel, barWidth: barWidth, settings: barViewSettings)
         
-        let chart = Chart(frame: candleChartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, candleStickLayer])
+        
+        let chart = Chart(frame: candleChartFrame, innerFrame: candleInnerFrame, settings: chartSettings, layers: [candleXAxisLayer, candleYAxisLayer, candleStickLayer!, trackerLayer!])
         let barChart = Chart(frame: barChartFrame, innerFrame: barInnerFrame, settings: chartSettings, layers: [barXAxisLayer, barXAxisLayer, barLayer])
         self.candleStickChart = chart
         self.barChart = barChart
@@ -119,9 +125,6 @@ class ZCandleChart: UIView {
         self.addSubview(chart.view)
     }
     
-    func addTracker() {
-        
-    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -130,15 +133,29 @@ class ZCandleChart: UIView {
 
 extension ZCandleChart: TrackerLayerDelegate {
     func longPressedBegan(_ location: CGPoint) {
-        
+        if let chartPoint = candleStickLayer?.chartPointsForScreenLocX(location.x).first {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            print("이걸로 moveto x : \(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)!!")
+            trackerLayer?.moveToView(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)
+            self.delegate?.longPressedBegan(chartPoint)
+        }
     }
     
     func longPressedMoved(_ location: CGPoint) {
-        
+        if let chartPoint = candleStickLayer?.chartPointsForScreenLocX(location.x).first {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+            print("이걸로 moveto x : \(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)!!")
+            trackerLayer?.moveToView(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)
+            self.delegate?.longPressedMoved(chartPoint)
+        }
     }
     
     func longPressedEnded(_ location: CGPoint) {
-        
+        if let chartPoint = candleStickLayer?.chartPointsForScreenLocX(location.x).first {
+            trackerLayer?.moveToView(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)
+            self.delegate?.longPressedEnded(chartPoint)
+        }
     }
     
     

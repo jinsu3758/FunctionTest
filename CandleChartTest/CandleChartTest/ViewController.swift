@@ -61,6 +61,8 @@ class ViewController: UIViewController {
             ChartPointCandleStick(date: date("20.10.2015"), formatter: displayFormatter, high: 28, low: 24, open: 26.7, close: 27.5),
             ChartPointCandleStick(date: date("21.10.2015"), formatter: displayFormatter, high: 28.5, low: 25.3, open: 26, close: 27),
             ChartPointCandleStick(date: date("22.10.2015"), formatter: displayFormatter, high: 30, low: 28, open: 28, close: 30),
+            ChartPointCandleStick(date: date("23.10.2015"), formatter: displayFormatter, high: 30, low: 28, open: 28, close: 30),
+            ChartPointCandleStick(date: date("24.10.2015"), formatter: displayFormatter, high: 30, low: 28, open: 28, close: 30),
             ChartPointCandleStick(date: date("25.10.2015"), formatter: displayFormatter, high: 31, low: 29, open: 31, close: 31),
             ChartPointCandleStick(date: date("26.10.2015"), formatter: displayFormatter, high: 31.5, low: 29.2, open: 29.6, close: 29.6),
             ChartPointCandleStick(date: date("27.10.2015"), formatter: displayFormatter, high: 30, low: 27, open: 29, close: 28.5),
@@ -86,11 +88,10 @@ class ViewController: UIViewController {
         ]
         
         let barValues: [Double] = [15,20,54,24,23,43,23,43,23,43,23,43,55, 66, 77, 88, 99]
-        let candleChart = ZCandleChart(candleChartFrame: CGRect(x: 0, y: 70, width: self.view.bounds.width, height: self.view.bounds.height - 90), barChartFrame: CGRect(x: 0, y: self.view.bounds.height - 250, width: self.view.bounds.width, height: 100), dateComponent: .day)
+        let candleChart = ZCandleChart(candleChartFrame: CGRect(x: 0, y: 70, width: self.view.bounds.width, height: self.view.bounds.height - 90), barChartFrame: CGRect(x: 0, y: self.view.bounds.height - 180, width: self.view.bounds.width, height: 100))
         
         self.view.addSubview(candleChart)
         candleChart.setChart(candleStickChartPoints: chartPoints, barChartValues: barValues)
-        
         
 //        let yValues = stride(from: 20, through: 55, by: 5).map {ChartAxisValueDouble(Double($0), labelSettings: labelSettings)}
 //

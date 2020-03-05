@@ -219,6 +219,9 @@ extension CandleStickInteractiveViewController: TrackerLayerDelegate {
     }
     
     func longPressedEnded(_ location: CGPoint) {
+        if let chartPoint = candleStickLayer?.chartPointsForScreenLocX(location.x).first {
+            trackerLayer.moveToView(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)
+        }
     }
     
     

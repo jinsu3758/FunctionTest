@@ -140,7 +140,7 @@ open class ChartPointsViewsLayer<T: ChartPoint, U: UIView>: ChartPointsLayer<T> 
     }
     
     fileprivate func inXBounds(_ x: CGFloat, view: UIView) -> Bool {
-        return (x > view.frame.origin.x) && (x < (view.frame.origin.x + view.frame.width))
+        return (x >= view.frame.origin.x) && (x <= (view.frame.origin.x + view.frame.width + 10))
     }
     
     fileprivate func inYBounds(_ y: CGFloat, view: UIView) -> Bool {

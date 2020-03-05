@@ -142,6 +142,7 @@
 		74C683A523FD1DDE0085D0E2 /* ZChartAxisModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C683A423FD1DDE0085D0E2 /* ZChartAxisModel.swift */; };
 		74C684AC24038C410085D0E2 /* ZCandleChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C684AB24038C410085D0E2 /* ZCandleChart.swift */; };
 		74C684B0240798460085D0E2 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C684AF240798460085D0E2 /* BarChartViewController.swift */; };
+		74C684B32410CB2B0085D0E2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C684B22410CB2B0085D0E2 /* AudioToolbox.framework */; };
 		CF687460B1FCFF3952B2A280 /* Pods_CandleChartTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80459553DC81F231BD4D1331 /* Pods_CandleChartTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +308,7 @@
 		74C683A423FD1DDE0085D0E2 /* ZChartAxisModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZChartAxisModel.swift; sourceTree = "<group>"; };
 		74C684AB24038C410085D0E2 /* ZCandleChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCandleChart.swift; sourceTree = "<group>"; };
 		74C684AF240798460085D0E2 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		74C684B22410CB2B0085D0E2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		80459553DC81F231BD4D1331 /* Pods_CandleChartTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CandleChartTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57DD5AC4FE9720F07E026EE /* Pods-CandleChartTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CandleChartTestTests.release.xcconfig"; path = "Target Support Files/Pods-CandleChartTestTests/Pods-CandleChartTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		C804AD2B85042C9303F59022 /* Pods_CandleChartTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CandleChartTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C684B32410CB2B0085D0E2 /* AudioToolbox.framework in Frameworks */,
 				CF687460B1FCFF3952B2A280 /* Pods_CandleChartTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,6 +635,7 @@
 		B258CFE312591404F4FFEC4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74C684B22410CB2B0085D0E2 /* AudioToolbox.framework */,
 				80459553DC81F231BD4D1331 /* Pods_CandleChartTest.framework */,
 				6B7EAD3FD34C641925138A19 /* Pods_CandleChartTest_CandleChartTestUITests.framework */,
 				C804AD2B85042C9303F59022 /* Pods_CandleChartTestTests.framework */,

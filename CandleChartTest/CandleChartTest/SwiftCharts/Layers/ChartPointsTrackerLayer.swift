@@ -43,10 +43,8 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
             case .began:
                 self?.delegate?.longPressedMoved(location)
                 self?.currentPositionLineOverlay.isHidden = false
-//                self?.currentPositionLineOverlay.center.x = location.x
             case .changed:
                 self?.delegate?.longPressedMoved(location)
-//                self?.currentPositionLineOverlay.center.x = location.x
             case .ended:
                 self?.delegate?.longPressedEnded(location)
                 self?.currentPositionLineOverlay.isHidden = true
@@ -64,7 +62,7 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
     }
     
     func moveToView(_ toX: CGFloat) {
-        print("x : \(toX)!!")
+        print("움직이라는 x : \(toX)!!")
         self.currentPositionLineOverlay.center.x = toX
     }
 }
@@ -88,6 +86,7 @@ private class TrackerView: UIView {
     
     @objc func longPressend(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: self)
+        print("실제 인식 x : \(location.x)!!")
         self.updateFunc?(location, sender.state)
     }
 }
