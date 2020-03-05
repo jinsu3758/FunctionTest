@@ -16,28 +16,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
 //        let labelSettings = ChartLabelSettings(font: UIFont(name: "Helvetica", size: 0) ?? UIFont.systemFont(ofSize: 0))
         
-        var readFormatter = DateFormatter()
+        let readFormatter = DateFormatter()
         readFormatter.dateFormat = "dd.MM.yyyy"
         
-        var displayFormatter = DateFormatter()
+        let displayFormatter = DateFormatter()
         displayFormatter.dateFormat = "MMM dd"
         
         let date = {(str: String) -> Date in
             return readFormatter.date(from: str)!
         }
         
-        let calendar = Calendar.current
-        
-        let dateWithComponents = {(day: Int, month: Int, year: Int) -> Date in
-            var components = DateComponents()
-            components.day = day
-            components.month = month
-            components.year = year
-            return calendar.date(from: components)!
-        }
         
         let chartPoints = [
             ChartPointCandleStick(date: date("01.10.2015"), formatter: displayFormatter, high: 40, low: 37, open: 39.5, close: 39),
@@ -70,21 +60,6 @@ class ViewController: UIViewController {
             ChartPointCandleStick(date: date("29.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
             ChartPointCandleStick(date: date("30.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
             ChartPointCandleStick(date: date("31.10.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
-        ]
-        
-        let chartPoints2 = [
-            ChartPointCandleStick(date: date("01.01.2015"), formatter: displayFormatter, high: 40, low: 37, open: 39.5, close: 39),
-            ChartPointCandleStick(date: date("02.02.2015"), formatter: displayFormatter, high: 39.8, low: 38, open: 39.5, close: 38.4),
-            ChartPointCandleStick(date: date("09.03.2015"), formatter: displayFormatter, high: 45, low: 41, open: 44, close: 43.5),
-            ChartPointCandleStick(date: date("17.04.2015"), formatter: displayFormatter, high: 32, low: 29, open: 31.5, close: 31),
-            ChartPointCandleStick(date: date("20.05.2015"), formatter: displayFormatter, high: 28, low: 24, open: 26.7, close: 27.5),
-            ChartPointCandleStick(date: date("21.06.2015"), formatter: displayFormatter, high: 28.5, low: 25.3, open: 26, close: 27),
-            ChartPointCandleStick(date: date("22.07.2015"), formatter: displayFormatter, high: 30, low: 28, open: 28, close: 30),
-            ChartPointCandleStick(date: date("25.08.2015"), formatter: displayFormatter, high: 31, low: 29, open: 31, close: 31),
-            ChartPointCandleStick(date: date("26.09.2015"), formatter: displayFormatter, high: 31.5, low: 29.2, open: 29.6, close: 29.6),
-            ChartPointCandleStick(date: date("27.10.2015"), formatter: displayFormatter, high: 30, low: 27, open: 29, close: 28.5),
-            ChartPointCandleStick(date: date("28.11.2015"), formatter: displayFormatter, high: 32, low: 30, open: 31, close: 30.6),
-            ChartPointCandleStick(date: date("29.12.2015"), formatter: displayFormatter, high: 35, low: 31, open: 31, close: 33),
         ]
         
         let barValues: [Double] = [15,20,54,24,23,43,23,43,23,43,23,43,55, 66, 77, 88, 99]
