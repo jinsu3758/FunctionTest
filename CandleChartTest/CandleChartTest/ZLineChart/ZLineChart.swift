@@ -17,12 +17,15 @@ enum AxisDirection {
 
 class ZLineChart<T, M>: UIView {
     fileprivate var chart: Chart?
+    fileprivate var trackerLayer: ChartPointsTrackerLayer<ChartPoint>?
+    
     var xModel: ChartAxisModel
     var yModel: ChartAxisModel
     var chartSettings: ChartSettings
     var chartFrame: CGRect
     var axisDirection: AxisDirection
     var lineModels: [ZLineChartModel<T, M>]
+    var isTracker: Bool = false
     
     init(frame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, xModel: ChartAxisModel, yModel: ChartAxisModel, lineModels: [ZLineChartModel<T, M>], axisDirection: AxisDirection = .leftBottom) {
         self.chartFrame = frame
@@ -59,6 +62,8 @@ class ZLineChart<T, M>: UIView {
         let (xAxisLayer, yAxisLayer, innerFrame) = getAxisSpace()
         let chartLineModels = lineModels.map { $0.getChartLineModel() }
         let chartLineLayers = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: chartLineModels)
+        
+        
         let chart = Chart(frame: chartFrame, innerFrame: innerFrame, settings: chartSettings, layers: [xAxisLayer, yAxisLayer, chartLineLayers])
         self.chart = chart
         self.addSubview(chart.view)
