@@ -43,6 +43,7 @@ class LineChartViewController: UIViewController {
         let chartLineModel = ZLineChartModel(chartPoints: [(date("01.10.2015"), 3), (date("02.10.2015"), 5), (date("03.10.2015"), 7.5), (date("06.10.2015"), 10), (date("08.10.2015"), 6), (date("09.10.2015"), 12)], xDateFormat: "MMM dd")
 
         let chart = ZLineChart(frame: CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height - 160), xModel: xModel, yModel: yAxisModel, lineModels: [chartLineModel])
+        chart.isTrackerView = true
         self.view.addSubview(chart)
         chart.setChart()
         

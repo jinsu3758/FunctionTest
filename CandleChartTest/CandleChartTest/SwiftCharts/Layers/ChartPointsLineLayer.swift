@@ -199,6 +199,12 @@ open class ChartPointsLineLayer<T: ChartPoint>: ChartPointsLayer<T> {
             updateScreenLines()
         }
     }
+    
+    open override func chartPointsForScreenLocX(_ x: CGFloat) -> [T] {
+        return super.chartPointsForScreenLocX(x)
+    }
+    
+    
 
     fileprivate func updateScreenLines() {
 

@@ -62,7 +62,6 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
     }
     
     func moveToView(_ toX: CGFloat) {
-        print("움직이라는 x : \(toX)!!")
         self.currentPositionLineOverlay.center.x = toX
     }
 }
@@ -86,7 +85,6 @@ private class TrackerView: UIView {
     
     @objc func longPressend(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: self)
-        print("실제 인식 x : \(location.x)!!")
         self.updateFunc?(location, sender.state)
     }
 }

@@ -22,6 +22,7 @@ class ZCandleChart: UIView {
     fileprivate var candleStickLayer: ChartPointsCandleStickViewsLayer<ChartPointCandleStick, ChartCandleStickView>?
     fileprivate let candleChartFrame: CGRect
     fileprivate let barChartFrame: CGRect
+    fileprivate let audioGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var delegate: ZCandleChartDelegate?
     var chartSettings: ChartSettings
@@ -134,8 +135,7 @@ class ZCandleChart: UIView {
 extension ZCandleChart: TrackerLayerDelegate {
     func longPressedBegan(_ location: CGPoint) {
         if let chartPoint = candleStickLayer?.chartPointsForScreenLocX(location.x).first {
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            print("이걸로 moveto x : \(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)!!")
+            audioGenerator.impactOccurred()
             trackerLayer?.moveToView(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)
             self.delegate?.longPressedBegan(chartPoint)
         }
@@ -143,9 +143,7 @@ extension ZCandleChart: TrackerLayerDelegate {
     
     func longPressedMoved(_ location: CGPoint) {
         if let chartPoint = candleStickLayer?.chartPointsForScreenLocX(location.x).first {
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.impactOccurred()
-            print("이걸로 moveto x : \(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)!!")
+            audioGenerator.impactOccurred()
             trackerLayer?.moveToView(candleStickLayer?.getChartPointsCenterX(location.x) ?? 0)
             self.delegate?.longPressedMoved(chartPoint)
         }
