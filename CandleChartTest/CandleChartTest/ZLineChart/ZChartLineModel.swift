@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum ChartDateComponent {
+    case day
+    case week
+    case month
+    case threeMonth
+    case year
+    case fiveYear
+    case total
+}
+
 struct ZLineChartModel<T, M> {
     let chartPoints: [ChartPoint]
     let lineColor: UIColor
@@ -18,8 +28,9 @@ struct ZLineChartModel<T, M> {
     let lineCap: LineCap
     let animDuration: Float
     let animDelay: Float
+    let chartDateComponent: ChartDateComponent
     
-    init(chartPoints: [(T, M)], lineColor: UIColor = .black, lineWidth: CGFloat = 1, lineJoin: LineJoin = .round, lineCap: LineCap = .round,
+    init(chartPoints: [(T, M)], chartDateComponent: ChartDateComponent, lineColor: UIColor = .black, lineWidth: CGFloat = 1, lineJoin: LineJoin = .round, lineCap: LineCap = .round,
          animDuration: Float = 0, animDelay: Float = 0, xDateFormat: String? = nil, yDateFormat: String? = nil) {
         var xValue: [ChartAxisValue] = []
         var yValue: [ChartAxisValue] = []
@@ -57,6 +68,7 @@ struct ZLineChartModel<T, M> {
         self.lineCap = lineCap
         self.animDuration = animDuration
         self.animDelay = animDelay
+        self.chartDateComponent = chartDateComponent
     }
     
     func getChartLineModel() -> ChartLineModel<ChartPoint> {

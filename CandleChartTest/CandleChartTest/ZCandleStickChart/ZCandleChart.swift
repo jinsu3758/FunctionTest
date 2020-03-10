@@ -35,7 +35,7 @@ class ZCandleChart: UIView {
     var trackerLineColor: UIColor
     var trackerLineWidth: CGFloat
     
-    init(candleChartFrame: CGRect, barChartFrame: CGRect, chartSettings: ChartSettings = ExamplesDefaults.chartSettingsWithPanZoom, axisDirection: AxisDirection = .rightBottom, barWidth: CGFloat = 5, strokeWidth: CGFloat = 0.5, upColor: UIColor = .red,  downColor: UIColor = .blue, axisLineColor: UIColor = .clear, trackerLineColor: UIColor = .red, trackerLineWidth: CGFloat = 1) {
+    init(candleChartFrame: CGRect, barChartFrame: CGRect, chartSettings: ChartSettings = ChartSettings(), axisDirection: AxisDirection = .rightBottom, barWidth: CGFloat = 5, strokeWidth: CGFloat = 0.5, upColor: UIColor = .red,  downColor: UIColor = .blue, axisLineColor: UIColor = .clear, trackerLineColor: UIColor = .red, trackerLineWidth: CGFloat = 1) {
         self.chartSettings = chartSettings
         self.candleChartFrame = candleChartFrame
         self.barChartFrame = barChartFrame
@@ -158,3 +158,4 @@ extension ZCandleChart: TrackerLayerDelegate {
     
     
 }
+

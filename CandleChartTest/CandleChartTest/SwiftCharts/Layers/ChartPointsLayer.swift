@@ -73,7 +73,7 @@ open class ChartPointsLayer<T: ChartPoint>: ChartCoordsSpaceLayer {
         return chartPointsModels.map{$0.screenLoc}
     }
     
-    fileprivate let chartPoints: [T]
+    let chartPoints: [T]
 
     fileprivate let tapSettings: ChartPointsTapSettings<T>?
     
@@ -155,7 +155,10 @@ open class ChartPointsLayer<T: ChartPoint>: ChartCoordsSpaceLayer {
     
     open func chartPointsForScreenLocY(_ y: CGFloat) -> [T] {
         return filterChartPoints { $0.y =~ y }
-
+    }
+    
+    open func chartPointsForScreenDateX(_ x: CGFloat) -> [T] {
+        return filterChartPoints{ $0.x - 60 >= x || $0.x + 60 <= x }
     }
 
     // smallest screen space between chartpoints on x axis

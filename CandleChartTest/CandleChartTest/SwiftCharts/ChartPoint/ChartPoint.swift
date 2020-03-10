@@ -18,6 +18,11 @@ open class ChartPoint: Hashable, Equatable, CustomStringConvertible {
         self.y = y
     }
     
+    init() {
+        self.x = ChartAxisValue(scalar: 0)
+        self.y = ChartAxisValue(scalar: 0)
+    }
+    
     open var description: String {
         return "\(x), \(y)"
     }
