@@ -41,13 +41,13 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
         let view = TrackerView(frame: chart.bounds, updateFunc: {[weak self] (location, state) in
             switch state {
             case .began:
-                self?.delegate?.longPressedMoved(location)
                 self?.currentPositionLineOverlay.isHidden = false
+                self?.delegate?.longPressedMoved(location)
             case .changed:
                 self?.delegate?.longPressedMoved(location)
             case .ended:
-                self?.delegate?.longPressedEnded(location)
                 self?.currentPositionLineOverlay.isHidden = true
+                self?.delegate?.longPressedEnded(location)
             default:
                 break
             }
@@ -64,6 +64,7 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
     func moveToView(_ toX: CGFloat) {
         self.currentPositionLineOverlay.center.x = toX
     }
+    
     
     func getChartPointForScreenLocX(_ x: CGFloat, dateComponent: ChartDateComponent) -> ChartPoint {
         var interval: Double = 0
@@ -85,6 +86,7 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
             break
         }
         self.chartPoints.forEach { point in
+            
             let chartPointsX = point.x.scalar
             let screenX = Double(x)
             if (chartPointsX - interval)...(chartPointsX + 60) ~= screenX {
@@ -93,6 +95,10 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
             }
         }
         return chartPoint
+    }
+    
+    override open func chartPointsForScreenLocX(_ x: CGFloat) -> [T] {
+        return super.chartPointsForScreenLocX(x)
     }
 }
 

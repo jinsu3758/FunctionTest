@@ -96,7 +96,6 @@ open class ChartPointsLineLayer<T: ChartPoint>: ChartPointsLayer<T> {
         self.pathGenerator = pathGenerator
         self.useView = useView
         self.delayInit = delayInit
-        
         let chartPoints: [T] = lineModels.flatMap{$0.chartPoints}
         
         super.init(xAxis: xAxis, yAxis: yAxis, chartPoints: chartPoints, displayDelay: displayDelay)

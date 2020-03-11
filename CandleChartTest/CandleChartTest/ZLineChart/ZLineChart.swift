@@ -20,6 +20,7 @@ class ZLineChart<T, M>: UIView {
     fileprivate var chart: Chart?
     fileprivate var trackerLayer: ChartPointsTrackerLayer<ChartPoint>?
     fileprivate var chartLineLayers: ChartPointsLineLayer<ChartPoint>?
+    fileprivate let audioGenerator = UIImpactFeedbackGenerator(style: .light)
 
     var xModel: ChartAxisModel?
     var yModel: ChartAxisModel?
@@ -71,7 +72,11 @@ class ZLineChart<T, M>: UIView {
     func setChart() {
         let chartPoints = lineModels[0].chartPoints
         let xValue = chartPoints.map { $0.x }
-        let yValue = chartPoints.map { $0.y }
+        var maxYValue: Double = 0
+        chartPoints.forEach {
+            if maxYValue < $0.y.scalar { maxYValue = $0.y.scalar }
+        }
+        let yValue = stride(from: 0, to: maxYValue + 2, by: 1).map { ChartAxisValueDouble(Double($0))}
         
         let xModel = ChartAxisModel(axisValues: xValue)
         let yModel = ChartAxisModel(axisValues: yValue)
@@ -94,21 +99,68 @@ class ZLineChart<T, M>: UIView {
 
 extension ZLineChart: TrackerLayerDelegate {
     func longPressedBegan(_ location: CGPoint) {
-        if let chartPoint = trackerLayer?.chartPointsForScreenLocX(location.x).first {
-            trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
+        let chartPointsX = trackerLayer!.chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
+        var min: CGFloat = CGFloat(MAXFLOAT)
+        var selectedPointX: CGFloat = 0
+        chartPointsX.forEach {
+            let interval = abs($0 - location.x)
+            if interval < min {
+                min = interval
+                selectedPointX = $0
+            }
         }
+        audioGenerator.impactOccurred()
+        trackerLayer?.moveToView(selectedPointX)
+//        if let chartp = trackerLayer!.chartPointsForScreenLocX(location.x).first {
+//            print("track X : \(chartp.x)!!!")
+//        }
+//        print("location x : \(location.x)!!")
+//        trackerLayer!.chartPoints.forEach { point in
+//            print("\(chartLineLayers!.modelLocToScreenLoc(x: point.x.scalar))!!!")
+//        }
+//        if let chartPoint = trackerLayer?.getChartPointForScreenLocX(location.x, dateComponent: .day) {
+//             trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
+//        }
     }
     
     func longPressedMoved(_ location: CGPoint) {
-        if let chartPoint = trackerLayer?.chartPointsForScreenLocX(location.x).first {
-            trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
+        let chartPointsX = trackerLayer!.chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
+        var min: CGFloat = CGFloat(MAXFLOAT)
+        var selectedPointX: CGFloat = 0
+        chartPointsX.forEach {
+            let interval = abs($0 - location.x)
+            if interval < min {
+                min = interval
+                selectedPointX = $0
+            }
         }
+        audioGenerator.impactOccurred()
+        trackerLayer?.moveToView(selectedPointX)
+        
+//        trackerLayer!.chartPoints.forEach { point in
+//            print("\(chartLineLayers!.modelLocToScreenLoc(x: point.x.scalar))!!!")
+//        }
+//        if let chartPoint = trackerLayer?.getChartPointForScreenLocX(location.x, dateComponent: .day) {
+//             trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
+//        }
     }
     
     func longPressedEnded(_ location: CGPoint) {
-        if let chartPoint = chartLineLayers?.chartPointsForScreenDateX(location.x).first {
-            trackerLayer?.moveToView(location.x)
+        let chartPointsX = trackerLayer!.chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
+        var min: CGFloat = CGFloat(MAXFLOAT)
+        var selectedPointX: CGFloat = 0
+        chartPointsX.forEach {
+            let interval = abs($0 - location.x)
+            if interval < min {
+                min = interval
+                selectedPointX = $0
+            }
         }
+        audioGenerator.impactOccurred()
+        trackerLayer?.moveToView(selectedPointX)
+//        if let chartPoint = trackerLayer?.getChartPointForScreenLocX(location.x, dateComponent: .day) {
+//             trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
+//        }
 //        if let chartPoint = chartLineLayers?.chartPointsForScreenLocX(location.x).first {
 //            trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
 //        }

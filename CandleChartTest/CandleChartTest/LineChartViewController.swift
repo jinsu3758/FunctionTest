@@ -40,12 +40,12 @@ class LineChartViewController: UIViewController {
 //
 //        let yAxisModel = ChartAxisModel(value: [0,4,8,12])
 //        let chartAxisModel = ZChartAxisModel(chartFrame: CGRect(x: 0, y: 30, width: self.view.bounds.width, height: self.view.bounds.height - 90), xAxisValue: [1,2,3,4,5,6,7,8,9,10,11,12].map{ Double($0) }, yAxisValue: [0,2,4,6,8,10,12,14].map{ Double($0) })
-//        let chartLineModel = ZLineChartModel(chartPoints: [(date("01.10.2015"), 3), (date("02.10.2015"), 5), (date("03.10.2015"), 7.5), (date("06.10.2015"), 10), (date("08.10.2015"), 6), (date("09.10.2015"), 12)], xDateFormat: "MMM dd")
+        let chartLineModel = ZLineChartModel(chartPoints: [(date("01.10.2015"), 3), (date("02.10.2015"), 5), (date("03.10.2015"), 7.5), (date("06.10.2015"), 10), (date("08.10.2015"), 6), (date("09.10.2015"), 12), (date("10.10.2015"), 15), (date("11.10.2015"), 20), (date("12.10.2015"), 14), (date("13.10.2015"), 12), (date("14.10.2015"), 10), (date("15.10.2015"), 12), (date("16.10.2015"), 12), (date("17.10.2015"), 12), (date("18.10.2015"), 12), (date("19.10.2015"), 12), (date("20.10.2015"), 12), (date("21.10.2015"), 12), (date("22.10.2015"), 12), (date("23.10.2015"), 12), (date("24.10.2015"), 12), (date("25.10.2015"), 12), (date("26.10.2015"), 12), (date("27.10.2015"), 12)], xDateFormat: "MMM dd")
 //
-//        let chart = ZLineChart(frame: CGRect(x: 10, y: 80, width: self.view.bounds.width - 30, height: self.view.bounds.height - 160), lineModels: [chartLineModel])
-//        chart.isTrackerView = true
-//        self.view.addSubview(chart)
-//        chart.setChart()
+        let chart = ZLineChart(frame: CGRect(x: 10, y: 80, width: self.view.bounds.width - 30, height: self.view.bounds.height - 160), lineModels: [chartLineModel])
+        chart.isTrackerView = true
+        self.view.addSubview(chart)
+        chart.setChart()
 //        
         
 //        let labelSettings = ChartLabelSettings(font: ExamplesDefaults.labelFont)
