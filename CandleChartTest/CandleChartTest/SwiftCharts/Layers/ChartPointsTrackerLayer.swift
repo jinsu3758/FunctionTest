@@ -65,38 +65,6 @@ open class ChartPointsTrackerLayer<T: ChartPoint>: ChartPointsLayer<T>{
         self.currentPositionLineOverlay.center.x = toX
     }
     
-    
-    func getChartPointForScreenLocX(_ x: CGFloat, dateComponent: ChartDateComponent) -> ChartPoint {
-        var interval: Double = 0
-        var chartPoint = ChartPoint()
-        switch dateComponent {
-        case .day:
-            interval = 60
-        case .week:
-            interval = 604800
-        case .month:
-            interval = 2592000
-        case .threeMonth:
-            interval = 7776000
-        case .year:
-            interval = 31536000
-        case .fiveYear:
-            interval = 157680000
-        default:
-            break
-        }
-        self.chartPoints.forEach { point in
-            
-            let chartPointsX = point.x.scalar
-            let screenX = Double(x)
-            if (chartPointsX - interval)...(chartPointsX + 60) ~= screenX {
-                chartPoint = point
-                return
-            }
-        }
-        return chartPoint
-    }
-    
     override open func chartPointsForScreenLocX(_ x: CGFloat) -> [T] {
         return super.chartPointsForScreenLocX(x)
     }

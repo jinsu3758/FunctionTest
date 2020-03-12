@@ -9,6 +9,12 @@
 import UIKit
 import AudioToolbox
 
+protocol ZLineChartDelegate {
+    func longPressedBegan(_ chartPoint: ZLineChartPoint)
+    func longPressedMoved(_ chartPoint: ZLineChartPoint)
+    func longPressedEnded(_ chartPoint: ZLineChartPoint)
+}
+
 enum AxisDirection {
     case leftTop
     case rightTop
@@ -16,35 +22,40 @@ enum AxisDirection {
     case rightBottom
 }
 
-class ZLineChart<T, M>: UIView {
+class ZLineChart: UIView {
     fileprivate var chart: Chart?
-    fileprivate var trackerLayer: ChartPointsTrackerLayer<ChartPoint>?
-    fileprivate var chartLineLayers: ChartPointsLineLayer<ChartPoint>?
+    fileprivate var trackerLayer: ChartPointsTrackerLayer<ZLineChartPoint>?
+    fileprivate var chartLineLayers: ChartPointsLineLayer<ZLineChartPoint>?
     fileprivate let audioGenerator = UIImpactFeedbackGenerator(style: .light)
+    fileprivate let chartPoints: [ZLineChartPoint]
 
     var xModel: ChartAxisModel?
     var yModel: ChartAxisModel?
     var chartSettings: ChartSettings
     var chartFrame: CGRect
     var axisDirection: AxisDirection
-    var lineModels: [ZLineChartModel<T, M>]
+    var lineModels: [ChartLineModel<ZLineChartPoint>]
     var isTrackerView: Bool = false
+    var delegate: ZLineChartDelegate?
     
-    init(frame: CGRect, chartSetting: ChartSettings = ChartSettings(), xModel: ChartAxisModel, yModel: ChartAxisModel, lineModels: [ZLineChartModel<T, M>], axisDirection: AxisDirection = .leftBottom) {
+    
+    init(frame: CGRect, chartSetting: ChartSettings = ChartSettings(), xModel: ChartAxisModel, yModel: ChartAxisModel, lineModels: [ChartLineModel<ZLineChartPoint>], axisDirection: AxisDirection = .leftBottom) {
         self.chartFrame = frame
         self.chartSettings = chartSetting
         self.axisDirection = axisDirection
         self.lineModels = lineModels
         self.xModel = xModel
         self.yModel = yModel
+        self.chartPoints = lineModels[0].chartPoints
         super.init(frame: frame)
     }
     
-    init(frame: CGRect, chartSetting: ChartSettings = ChartSettings(), lineModels: [ZLineChartModel<T, M>], axisDirection: AxisDirection = .leftBottom) {
+    init(frame: CGRect, chartSetting: ChartSettings = ChartSettings(), lineModels: [ChartLineModel<ZLineChartPoint>], axisDirection: AxisDirection = .leftBottom) {
         self.chartFrame = frame
         self.chartSettings = chartSetting
         self.axisDirection = axisDirection
         self.lineModels = lineModels
+        self.chartPoints = lineModels[0].chartPoints
         super.init(frame: frame)
     }
     
@@ -82,8 +93,7 @@ class ZLineChart<T, M>: UIView {
         let yModel = ChartAxisModel(axisValues: yValue)
         
         let (xAxisLayer, yAxisLayer, innerFrame) = getAxisSpace(xModel: xModel, yModel: yModel)
-        let chartLineModels = lineModels.map { $0.getChartLineModel() }
-        chartLineLayers = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: chartLineModels)
+        chartLineLayers = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: lineModels)
         if isTrackerView {
             trackerLayer = ChartPointsTrackerLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: lineModels[0].chartPoints)
             trackerLayer?.delegate = self
@@ -99,10 +109,12 @@ class ZLineChart<T, M>: UIView {
 
 extension ZLineChart: TrackerLayerDelegate {
     func longPressedBegan(_ location: CGPoint) {
-        let chartPointsX = trackerLayer!.chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
+        let chartPointsX = chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
         var min: CGFloat = CGFloat(MAXFLOAT)
         var selectedPointX: CGFloat = 0
+        var index: Int = -1
         chartPointsX.forEach {
+            index += 1
             let interval = abs($0 - location.x)
             if interval < min {
                 min = interval
@@ -111,6 +123,8 @@ extension ZLineChart: TrackerLayerDelegate {
         }
         audioGenerator.impactOccurred()
         trackerLayer?.moveToView(selectedPointX)
+        delegate?.longPressedBegan(chartPoints[index])
+//        delegate?.longPressedBegan(selectedPointX)
 //        if let chartp = trackerLayer!.chartPointsForScreenLocX(location.x).first {
 //            print("track X : \(chartp.x)!!!")
 //        }
@@ -124,18 +138,23 @@ extension ZLineChart: TrackerLayerDelegate {
     }
     
     func longPressedMoved(_ location: CGPoint) {
-        let chartPointsX = trackerLayer!.chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
+        let chartPointsX = chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
         var min: CGFloat = CGFloat(MAXFLOAT)
         var selectedPointX: CGFloat = 0
+        var index: Int = -1
         chartPointsX.forEach {
             let interval = abs($0 - location.x)
+            index += 1
             if interval < min {
                 min = interval
                 selectedPointX = $0
             }
+            
         }
         audioGenerator.impactOccurred()
         trackerLayer?.moveToView(selectedPointX)
+        delegate?.longPressedMoved(chartPoints[index])
+//        delegate?.longPressedMoved(selectedPointX)
         
 //        trackerLayer!.chartPoints.forEach { point in
 //            print("\(chartLineLayers!.modelLocToScreenLoc(x: point.x.scalar))!!!")
@@ -146,10 +165,12 @@ extension ZLineChart: TrackerLayerDelegate {
     }
     
     func longPressedEnded(_ location: CGPoint) {
-        let chartPointsX = trackerLayer!.chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
+        let chartPointsX = chartPoints.map { chartLineLayers!.modelLocToScreenLoc(x: $0.x.scalar) }
         var min: CGFloat = CGFloat(MAXFLOAT)
         var selectedPointX: CGFloat = 0
+        var index: Int = -1
         chartPointsX.forEach {
+            index += 1
             let interval = abs($0 - location.x)
             if interval < min {
                 min = interval
@@ -158,6 +179,7 @@ extension ZLineChart: TrackerLayerDelegate {
         }
         audioGenerator.impactOccurred()
         trackerLayer?.moveToView(selectedPointX)
+        delegate?.longPressedEnded(chartPoints[index])
 //        if let chartPoint = trackerLayer?.getChartPointForScreenLocX(location.x, dateComponent: .day) {
 //             trackerLayer?.moveToView(chartLineLayers!.modelLocToScreenLoc(x: chartPoint.x.scalar))
 //        }

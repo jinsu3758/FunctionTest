@@ -9,4 +9,18 @@
 import UIKit
 
 class ZLineChartPoint: ChartPoint {
+    let date: Date
+    let close: Double
+    
+    init(date: Date, close: Double) {
+        let x = ChartAxisValueDate(date: date, formatter: DateFormatter())
+        self.date = date
+        self.close = close
+        super.init(x: x, y: ChartAxisValueDouble(close))
+        
+    }
+    
+    required public init(x: ChartAxisValue, y: ChartAxisValue) {
+        fatalError("init(x:y:) has not been implemented")
+    }
 }

@@ -44,7 +44,7 @@ public struct ChartLineModel<T: ChartPoint> {
         self.dashPattern = dashPattern
     }
     
-    public init(chartPoints: [T], lineColor: UIColor, lineWidth: CGFloat = 1, lineJoin: LineJoin = .round, lineCap: LineCap = .round, animDuration: Float, animDelay: Float, dashPattern: [Double]? = nil) {
+    public init(chartPoints: [T], lineColor: UIColor = .black, lineWidth: CGFloat = 1, lineJoin: LineJoin = .round, lineCap: LineCap = .round, animDuration: Float = 0, animDelay: Float = 0, dashPattern: [Double]? = nil) {
         self.init(chartPoints: chartPoints, lineColors: [lineColor], lineWidth: lineWidth, lineJoin: lineJoin, lineCap: lineCap, animDuration: animDuration, animDelay: animDelay, dashPattern: dashPattern)
     }
     /// The number of chart points in the model
