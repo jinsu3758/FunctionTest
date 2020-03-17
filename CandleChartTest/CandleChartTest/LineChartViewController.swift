@@ -10,6 +10,7 @@ import UIKit
 
 class LineChartViewController: UIViewController {
     fileprivate var chart: Chart?
+    @IBOutlet weak var chartView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -69,15 +69,26 @@
                                     <action selector="backVC:" destination="o6w-Oe-xls" eventType="touchUpInside" id="mV1-c4-LYL"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbL-VD-o9C">
+                                <rect key="frame" x="20" y="189" width="374" height="573"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zoP-8f-m94" firstAttribute="top" secondItem="cED-x6-bUd" secondAttribute="top" constant="15" id="33u-5v-xhc"/>
+                            <constraint firstItem="cED-x6-bUd" firstAttribute="bottom" secondItem="jbL-VD-o9C" secondAttribute="bottom" constant="100" id="Ihp-2Y-Qsr"/>
+                            <constraint firstItem="jbL-VD-o9C" firstAttribute="top" secondItem="zoP-8f-m94" secondAttribute="bottom" constant="100" id="K17-an-uxQ"/>
+                            <constraint firstItem="jbL-VD-o9C" firstAttribute="leading" secondItem="cED-x6-bUd" secondAttribute="leading" constant="20" id="QqZ-8o-4rp"/>
+                            <constraint firstItem="cED-x6-bUd" firstAttribute="trailing" secondItem="jbL-VD-o9C" secondAttribute="trailing" constant="20" id="fop-YJ-Ri3"/>
                             <constraint firstItem="zoP-8f-m94" firstAttribute="centerX" secondItem="lpc-ND-7Jm" secondAttribute="centerX" id="m4g-H0-dq8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cED-x6-bUd"/>
                     </view>
                     <navigationItem key="navigationItem" id="J9q-gf-NLg"/>
+                    <connections>
+                        <outlet property="chartView" destination="jbL-VD-o9C" id="Mod-sT-vyu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qoj-fW-kAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

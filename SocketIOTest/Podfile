@@ -1,0 +1,21 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SocketIOTest' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  
+  pod 'Socket.IO-Client-Swift'
+
+  # Pods for SocketIOTest
+
+  target 'SocketIOTestTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'SocketIOTestUITests' do
+    # Pods for testing
+  end
+
+end

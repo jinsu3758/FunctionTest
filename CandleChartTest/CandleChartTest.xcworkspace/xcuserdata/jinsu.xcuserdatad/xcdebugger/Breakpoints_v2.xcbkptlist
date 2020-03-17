@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B08C2F9E-7B36-43F7-8E98-8C6D618101F3"
-            shouldBeEnabled = "Yes"
+            uuid = "6E8F4421-0783-4F24-9B10-07FF77C64C41"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CandleChartTest/ZLineChart/ZLineChart.swift"
+            filePath = "CandleChartTest/SwiftCharts/Layers/ChartPointsTrackerLayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "longPressedBegan(_:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "getChartPointForScreenLocX(_:dateComponent:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "33E9D152-75C9-4FF8-AA57-887DB9CA9964"
+            uuid = "4B5E3DDE-0C5B-41F1-9AC6-B64B5266F814"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CandleChartTest/ZLineChart/ZLineChart.swift"
+            filePath = "CandleChartTest/SwiftCharts/Layers/ChartPointsTrackerLayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "longPressedMoved(_:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "display(chart:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
