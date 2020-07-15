@@ -1,0 +1,271 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target i386-apple-ios8.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SciChart
+@_exported import SciChart
+import Swift
+extension ISCIFreeSurfaceDataSeries3DValues {
+  public func getOffsetX<TX>() -> TX where TX : Swift.Comparable
+  public func getOffsetY<TY>() -> TY where TY : Swift.Comparable
+  public func getOffsetZ<TZ>() -> TZ where TZ : Swift.Comparable
+}
+extension ISCIHlDataSeries {
+  public func append<TX, TY>(x: TX, y: TY, high: TY, low: TY) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func append<TX, TY>(x: [TX], y: [TY], high: [TY], low: [TY]) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: TX, y: TY, high: TY, low: TY, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: [TX], y: [TY], high: [TY], low: [TY], ad index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func update<TY>(y: TY, high: TY, low: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TY>(y: [TY], high: [TY], low: [TY], at index: Swift.Int) where TY : Swift.Comparable
+}
+extension ISCIXyyDataSeries {
+  public func append<TX, TY>(x: TX, y: TY, y1: TY) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func append<TX, TY>(x: [TX], y: [TY], y1: [TY]) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: TX, y: TY, y1: TY, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: [TX], y: [TY], y1: [TY], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func update<TX>(x: TX, at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TY>(y1: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TX, TY>(x: TX, y: TY, y1: TY, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func update<TX>(x: [TX], at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TY>(y1: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TX, TY>(x: [TX], y: [TY], y1: [TY], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+}
+extension ISCIXyzDataSeries3D {
+  public func append<TX, TY, TZ>(x: TX, y: TY, z: TZ) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func append<TX, TY, TZ>(x: [TX], y: [TY], z: [TZ]) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func insert<TX, TY, TZ>(x: TX, y: TY, z: TZ, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func insert<TX, TY, TZ>(x: [TX], y: [TY], z: [TZ], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func update<TX>(x: TX, at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TZ>(z: TZ, at index: Swift.Int) where TZ : Swift.Comparable
+  public func update<TX, TY, TZ>(x: TX, y: TY, z: TZ, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func update<TX>(x: [TX], at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TZ>(z: [TZ], at index: Swift.Int) where TZ : Swift.Comparable
+  public func update<TX, TY, TZ>(x: [TX], y: [TY], z: [TZ], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+}
+extension SCIRenderableSeriesCollection {
+  public func add(items: SciChart.ISCIRenderableSeries...)
+}
+extension ISCIUniformHeatmapDataSeriesValues {
+  public func getStartX<TX>() -> TX where TX : Swift.Comparable
+  public func getStepX<TX>() -> TX where TX : Swift.Comparable
+  public func getStartY<TY>() -> TY where TY : Swift.Comparable
+  public func getStepY<TY>() -> TY where TY : Swift.Comparable
+  public func getXValue<TX>(at index: Swift.Int) -> TX where TX : Swift.Comparable
+  public func getYValue<TY>(at index: Swift.Int) -> TY where TY : Swift.Comparable
+  public func getZValue<TZ>(atXIndex: Swift.Int, yIndex: Swift.Int) -> TZ where TZ : Swift.Comparable
+}
+extension SCIDisplaceableFreeSurfaceDataSeries3D {
+  public func setDisplacement<T>(_ displacement: T, atU uIndex: Swift.Int, v vIndex: Swift.Int) where T : Swift.Comparable
+  public func push<TY>(_ row: [TY]) where TY : Swift.Comparable
+  public func set<TY>(_ row: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func copy<TY>(from values: [TY]) where TY : Swift.Comparable
+}
+extension SCIUniformGridDataSeries3D {
+  public func set<TX>(startX: TX) where TX : Swift.Comparable
+  public func set<TX>(stepX: TX) where TX : Swift.Comparable
+  public func set<TZ>(startZ: TZ) where TZ : Swift.Comparable
+  public func set<TZ>(stepZ: TZ) where TZ : Swift.Comparable
+}
+extension SCIBoolValues {
+  public var itemsArray: [Swift.Bool] {
+    get
+  }
+  convenience public init(values: [Swift.Bool])
+  public func add(values: [Swift.Bool])
+  public func add(values: [Swift.Bool], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIByteValues {
+  public var itemsArray: [Swift.Int8] {
+    get
+  }
+  convenience public init(values: [Swift.Int8])
+  public func add(values: [Swift.Int8])
+  public func add(values: [Swift.Int8], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIUnsignedByteValues {
+  public var itemsArray: [Swift.UInt8] {
+    get
+  }
+  convenience public init(values: [Swift.UInt8])
+  public func add(values: [Swift.UInt8])
+  public func add(values: [Swift.UInt8], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIShortValues {
+  public var itemsArray: [Swift.Int16] {
+    get
+  }
+  convenience public init(values: [Swift.Int16])
+  public func add(values: [Swift.Int16])
+  public func add(values: [Swift.Int16], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIUnsignedShortValues {
+  public var itemsArray: [Swift.UInt16] {
+    get
+  }
+  convenience public init(values: [Swift.UInt16])
+  public func add(values: [Swift.UInt16])
+  public func add(values: [Swift.UInt16], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIIntegerValues {
+  public var itemsArray: [Swift.Int] {
+    get
+  }
+  convenience public init(values: [Swift.Int])
+  public func add(values: [Swift.Int])
+  public func add(values: [Swift.Int], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIUnsignedIntegerValues {
+  public var itemsArray: [Swift.UInt] {
+    get
+  }
+  convenience public init(values: [Swift.UInt])
+  public func add(values: [Swift.UInt])
+  public func add(values: [Swift.UInt], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCILongValues {
+  public var itemsArray: [Swift.Int64] {
+    get
+  }
+  convenience public init(values: [Swift.Int64])
+  public func add(values: [Swift.Int64])
+  public func add(values: [Swift.Int64], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIUnsignedLongValues {
+  public var itemsArray: [Swift.UInt64] {
+    get
+  }
+  convenience public init(values: [Swift.UInt64])
+  public func add(values: [Swift.UInt64])
+  public func add(values: [Swift.UInt64], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIFloatValues {
+  public var itemsArray: [Swift.Float] {
+    get
+  }
+  convenience public init(values: [Swift.Float])
+  public func add(values: [Swift.Float])
+  public func add(values: [Swift.Float], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIDoubleValues {
+  public var itemsArray: [Swift.Double] {
+    get
+  }
+  convenience public init(values: [Swift.Double])
+  public func add(values: [Swift.Double])
+  public func add(values: [Swift.Double], startIndex: Swift.Int, count: Swift.Int)
+}
+extension SCIDateValues {
+  public var itemsArray: [Swift.Double] {
+    get
+  }
+  convenience public init(values: [Swift.Double])
+}
+extension ISCIGridDataSeries3DValues {
+  public func getXValue<TX>(at index: Swift.Int) -> TX where TX : Swift.Comparable
+  public func getYValueAt<TY>(x xIndex: Swift.Int, z zIndex: Swift.Int) -> TY where TY : Swift.Comparable
+  public func getZValue<TZ>(at index: Swift.Int) -> TZ where TZ : Swift.Comparable
+}
+extension SCICylindroidDataSeries3D {
+  public func getA<T>() -> T where T : Swift.Comparable
+  public func set<T>(a: T) where T : Swift.Comparable
+  public func getB<T>() -> T where T : Swift.Comparable
+  public func set<T>(b: T) where T : Swift.Comparable
+  public func getH<T>() -> T where T : Swift.Comparable
+  public func set<T>(h: T) where T : Swift.Comparable
+}
+extension ISCIAnnotation {
+  public func getX1<T>() -> T where T : Swift.Comparable
+  public func set<T>(x1: T) where T : Swift.Comparable
+  public func getY1<T>() -> T where T : Swift.Comparable
+  public func set<T>(y1: T) where T : Swift.Comparable
+  public func getX2<T>() -> T where T : Swift.Comparable
+  public func set<T>(x2: T) where T : Swift.Comparable
+  public func getY2<T>() -> T where T : Swift.Comparable
+  public func set<T>(y2: T) where T : Swift.Comparable
+}
+extension ISCIXyzDataSeries {
+  public func append<TX, TY, TZ>(x: TX, y: TY, z: TZ) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func append<TX, TY, TZ>(x: [TX], y: [TY], z: [TZ]) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func insert<TX, TY, TZ>(x: TX, y: TY, z: TZ, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func insert<TX, TY, TZ>(x: [TX], y: [TY], z: [TZ], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func update<TX>(x: TX, at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TZ>(z: TZ, at index: Swift.Int) where TZ : Swift.Comparable
+  public func update<TX, TY, TZ>(x: TX, y: TY, z: TZ, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+  public func update<TX>(x: [TX], at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TZ>(z: [TZ], at index: Swift.Int) where TZ : Swift.Comparable
+  public func update<TX, TY, TZ>(x: [TX], y: [TY], z: [TZ], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable, TZ : Swift.Comparable
+}
+extension SCIPolarDataSeries3D {
+  public func getA<T>() -> T where T : Swift.Comparable
+  public func set<T>(a: T) where T : Swift.Comparable
+  public func getB<T>() -> T where T : Swift.Comparable
+  public func set<T>(b: T) where T : Swift.Comparable
+}
+extension SCIEllipsoidDataSeries3D {
+  public func getA<T>() -> T where T : Swift.Comparable
+  public func set<T>(a: T) where T : Swift.Comparable
+  public func getB<T>() -> T where T : Swift.Comparable
+  public func set<T>(b: T) where T : Swift.Comparable
+  public func getC<T>() -> T where T : Swift.Comparable
+  public func set<T>(c: T) where T : Swift.Comparable
+}
+extension SCIBaseGridDataSeries3D {
+  public func update<TY>(y: TY, atX xIndex: Swift.Int, z zIndex: Swift.Int) where TY : Swift.Comparable
+  public func push<TY>(_ row: [TY]) where TY : Swift.Comparable
+  public func set<TY>(_ row: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func copy<TY>(from values: [TY]) where TY : Swift.Comparable
+}
+extension ISCIXyDataSeries {
+  public func append<TX, TY>(x: TX, y: TY) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func append<TX, TY>(x: [TX], y: [TY]) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: TX, y: TY, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: [TX], y: [TY], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func update<TX>(x: TX, at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TX, TY>(x: TX, y: TY, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func update<TX>(x: [TX], at index: Swift.Int) where TX : Swift.Comparable
+  public func update<TY>(y: [TY], at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TX, TY>(x: [TX], y: [TY], at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+}
+extension ISCIUniformHeatmapDataSeries {
+  public func setStartX<TX>(startX: TX) where TX : Swift.Comparable
+  public func setStepX<TX>(stepX: TX) where TX : Swift.Comparable
+  public func setStartY<TY>(startY: TY) where TY : Swift.Comparable
+  public func setStepY<TY>(stepY: TY) where TY : Swift.Comparable
+  public func update<TZ>(z: TZ, atX xIndex: Swift.Int, y yIndex: Swift.Int) where TZ : Swift.Comparable
+  public func update<TZ>(z: [TZ]) where TZ : Swift.Comparable
+  public func update<TZ>(z: [TZ], atX xIndex: Swift.Int, y yIndex: Swift.Int) where TZ : Swift.Comparable
+}
+extension SCIRenderableSeries3DCollection {
+  public func add(items: SciChart.ISCIRenderableSeries3D...)
+}
+extension SCIChartModifierCollection {
+  public func add(items: SciChart.ISCIChartModifier...)
+}
+extension SCIAxisCollection {
+  public func add(items: SciChart.ISCIAxis...)
+}
+extension SCIAnnotationCollection {
+  public func add(items: SciChart.ISCIAnnotation...)
+}
+extension ISCIOhlcDataSeries {
+  public func append<TX, TY>(x: TX, open: TY, high: TY, low: TY, close: TY) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func append<TX, TY>(x: [TX], open: [TY], high: [TY], low: [TY], close: [TY]) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: TX, open: TY, high: TY, low: TY, close: TY, at index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func insert<TX, TY>(x: [TX], open: [TY], high: [TY], low: [TY], close: [TY], ad index: Swift.Int) where TX : Swift.Comparable, TY : Swift.Comparable
+  public func update<TY>(open: TY, high: TY, low: TY, close: TY, at index: Swift.Int) where TY : Swift.Comparable
+  public func update<TY>(open: [TY], high: [TY], low: [TY], close: [TY], at index: Swift.Int) where TY : Swift.Comparable
+}
+extension SCIChartModifier3DCollection {
+  public func add(items: SciChart.ISCIChartModifier3D...)
+}
+extension ISCIUniformGridDataSeries3DValues {
+  public func getStartX<TX>() -> TX where TX : Swift.Comparable
+  public func getStepX<TX>() -> TX where TX : Swift.Comparable
+  public func getStartZ<TZ>() -> TZ where TZ : Swift.Comparable
+  public func getStepZ<TZ>() -> TZ where TZ : Swift.Comparable
+}

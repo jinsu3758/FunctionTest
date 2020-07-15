@@ -1,0 +1,44 @@
+## macro box(type, value)
+{%- if type.startswith('Date') -%}
+    [NSDate dateWithTimeIntervalSince1970:{{ value }}]
+{%- else -%}
+    [NSNumber numberWith{{ type }}:{{ value }}]
+{%- endif -%}
+## endmacro
+
+## macro unbox(type, pType, value)
+{%- if type.startswith('Date') -%}
+    {{ value }}.timeIntervalSince1970
+{%- else -%}
+    {%- if pType.startswith('long long') -%}
+    {{ value }}.longValue
+    {%- else -%}
+    {{ value }}.{{ pType }}Value
+    {%- endif -%}
+{%- endif -%}
+## endmacro
+
+## macro get_type(type)
+{%- if type.startswith('Date') -%}
+    Double
+{%- else -%}
+    {{ type }}
+{%- endif -%}
+## endmacro
+
+## macro get_boxed_type(type)
+{%- if type.startswith('Date') -%}
+    NSDate *
+{%- else -%}
+    NSNumber *
+{%- endif -%}
+## endmacro
+
+## macro get_min_max_define(type)
+{%- if type.startswith('Char')   -%}CHAR{%- endif -%}
+{%- if type.startswith('Short')  -%}SHRT{%- endif -%}
+{%- if type.startswith('Int')    -%}INT{%- endif -%}
+{%- if type.startswith('Long')   -%}LONG_LONG{%- endif -%}
+{%- if type.startswith('Float')  -%}FLT{%- endif -%}
+{%- if type.startswith('Double') -%}DBL{%- endif -%}
+## endmacro

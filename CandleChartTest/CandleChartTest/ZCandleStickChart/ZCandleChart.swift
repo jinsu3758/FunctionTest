@@ -85,13 +85,13 @@ class ZCandleChart: UIView {
         let yValues = stride(from: 20, through: maxCandleHighValue, by: 5).map {ChartAxisValueDouble(Double($0))}
         let labelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: ChartLabelSettings())
         let yLabelGenerator = ChartAxisLabelsGeneratorNumber()
-        
         let firstDate = candleStickChartPoints[0].date
         let lastDate = candleStickChartPoints[candleStickChartPoints.count - 1].date
+        let barYgenerator = ChartAxisValuesGeneratorNice(minValue: 0, maxValue: maxBarValue, preferredDividers: candleStickChartPoints.count, minSpace: 10, maxTextSize: 0)
         
         let xModel = ChartAxisModel(lineColor: axisLineColor, firstModelValue: firstDate.timeIntervalSince1970, lastModelValue: lastDate.timeIntervalSince1970, axisValuesGenerator: xGenerator, labelsGenerator: labelGenerator)
         let yModel = ChartAxisModel(axisValues: yValues, lineColor: axisLineColor)
-        let barYmodel = ChartAxisModel(lineColor: axisLineColor, firstModelValue: 0, lastModelValue: maxBarValue, axisValuesGenerator: xGenerator, labelsGenerator: yLabelGenerator)
+        let barYmodel = ChartAxisModel(lineColor: axisLineColor, firstModelValue: 0, lastModelValue: maxBarValue, axisValuesGenerator: barYgenerator, labelsGenerator: yLabelGenerator)
         
         let (candleXAxisLayer, candleYAxisLayer, candleInnerFrame) = getAxisSpace(xModel: xModel, yModel: yModel, frame: candleChartFrame)
         let viewGenerator = {[unowned self] (chartPointModel: ChartPointLayerModel<ChartPointCandleStick>, layer: ChartPointsViewsLayer<ChartPointCandleStick, ChartCandleStickView>, chart: Chart) -> ChartCandleStickView? in
