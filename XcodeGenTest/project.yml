@@ -1,0 +1,10 @@
+name: XcodeGenTest
+options:
+ bundleIdPrefix: com.ios
+ postGenCommand: pod install
+targets:
+ XcodeGenTest:
+  type: application
+  platform: iOS
+  deploymentTarget: "12.0"
+  sources: [XcodeGenTest]
