@@ -2,9 +2,29 @@ name: XcodeGenTest
 options:
  bundleIdPrefix: com.ios
  postGenCommand: pod install
+packages:
+ Alamofire:
+  url: https://github.com/Alamofire/Alamofire
+  from: 5.2.2
+ RxSwift:
+  url: https://github.com/ReactiveX/RxSwift
+  from: 5.1.1
 targets:
  XcodeGenTest:
   type: application
   platform: iOS
   deploymentTarget: "12.0"
   sources: [XcodeGenTest]
+  dependencies:
+   - package: Alamofire
+   - package: RxSwift
+ XcodeGenTestTests:
+  type: bundle.unit-test
+  platform: iOS
+  deploymentTarget: "12.0"
+  sources: [XcodeGenTestTests]
+ XcodeGenTestUITests:
+  type: bundle.ui-testing
+  platform: iOS
+  delploymentTarget: "12.0"
+  sources: [XcodeGenTestUITests]
