@@ -15,6 +15,8 @@ targets:
   platform: iOS
   deploymentTarget: "12.0"
   sources: [XcodeGenTest]
+  settings:
+   DEVELOPMENT_TEAM: AL9L4NE9HL
   dependencies:
    - package: Alamofire
    - package: RxSwift

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,12 +28,12 @@
 		7543824CF2BCC3981D306924 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92F0A76FF74937497743494A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A7AB30290C10DE794EEF831D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		B53DAD9C2D9A04FC110497A0 /* XcodeGenTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcodeGenTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D143219CF43E9F4BD999A2BD /* XcodeGenTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeGenTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53DAD9C2D9A04FC110497A0 /* XcodeGenTestUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = XcodeGenTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D143219CF43E9F4BD999A2BD /* XcodeGenTest.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = XcodeGenTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E118914A87E7DDF9A4F7B7F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E6E0FD77A735FA42C5D777C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F0A96E53ACE21F6E96368A30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F2D54FCCF6226F293F1139F4 /* XcodeGenTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcodeGenTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2D54FCCF6226F293F1139F4 /* XcodeGenTestTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = XcodeGenTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,13 +162,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1020;
+				TargetAttributes = {
+					68D43FA1BC686C941E1ECDEF = {
+						DevelopmentTeam = AL9L4NE9HL;
+					};
+				};
 			};
 			buildConfigurationList = FD4063B4BA9423B2E577EB51 /* Build configuration list for PBXProject "XcodeGenTest" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 1C5909045C30F27906811AA1;
@@ -303,7 +307,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = AL9L4NE9HL;
 				INFOPLIST_FILE = XcodeGenTestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -321,7 +324,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = AL9L4NE9HL;
 				INFOPLIST_FILE = XcodeGenTestUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -338,7 +340,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = AL9L4NE9HL;
 				INFOPLIST_FILE = XcodeGenTestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -356,7 +357,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = AL9L4NE9HL;
 				INFOPLIST_FILE = XcodeGenTestUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
