@@ -1,7 +1,10 @@
 name: XcodeGenTest
 options:
  bundleIdPrefix: com.ios
- postGenCommand: pod install
+ deploymentTarget:
+  iOS: "12.0"
+settings:
+ DEVELOPMENT_TEAM : AL9L4NE9HL
 packages:
  Alamofire:
   url: https://github.com/Alamofire/Alamofire
@@ -15,8 +18,6 @@ targets:
   platform: iOS
   deploymentTarget: "12.0"
   sources: [XcodeGenTest]
-  settings:
-   DEVELOPMENT_TEAM: AL9L4NE9HL
   dependencies:
    - package: Alamofire
    - package: RxSwift
