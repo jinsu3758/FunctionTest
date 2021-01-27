@@ -78,16 +78,34 @@ var str = "Hello, playground"
 /// 결과 : 123456 순서대로 된다
 
 
-let serialDispatchQueue = DispatchQueue(label: "Serial Queue")
+//let serialDispatchQueue = DispatchQueue(label: "Serial Queue")
+//let concurrentDispatchQueue = DispatchQueue.global()
+//
+//
+//serialDispatchQueue.async {
+//    print("1")
+//}
+//
+//concurrentDispatchQueue.async {
+//    print("2")
+//}
+
 let concurrentDispatchQueue = DispatchQueue.global()
-
-
-serialDispatchQueue.async {
-    print("1")
-}
 
 concurrentDispatchQueue.async {
     print("2")
+}
+
+concurrentDispatchQueue.async {
+    print("3")
+}
+
+concurrentDispatchQueue.async {
+    print("4")
+}
+
+concurrentDispatchQueue.async {
+    print("5")
 }
 
 
